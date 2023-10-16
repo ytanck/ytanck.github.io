@@ -14,8 +14,7 @@ timezone: ''
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 # permalink: :year/:month/:day/:title/
-url: https://ytking.github.io
-# url: https://yyff.wang
+url: https://yyff.wang
 permalink: post/:title/
 permalink_defaults:
 pretty_urls:
@@ -107,9 +106,10 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   # - type: git
+  # repo:要部署的仓库地址,会自动用Actions-workflows-pages方式部署下面的branch分支
   #   repo: https://gitee.com/ytanck/hexo-blog.git
   #   branch: master
   - type: git
-    repo: https://github.com/ytking/hexo-blog
+    repo: https://github.com/ytking/test
     branch: gh-pages
 
