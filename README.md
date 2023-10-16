@@ -12,3 +12,7 @@ hexo new [layout] <title>
 hexo new page --path about/me "About me"
 ```
 以上命令会创建一个 source/about/me.md 文件，同时 Front Matter 中的 title 为 "About me"
+
+### 面试/笔记
+
+- [你不知道的CSS伪元素](https://github.com/ytking/ytking/issues/1)
