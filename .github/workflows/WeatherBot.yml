@@ -1,10 +1,10 @@
 name: 'GitHub Actions Weather Bot'
 
 on:
-  push:
+  # push:
   workflow_dispatch:
   schedule:
-    - cron: '50 06 * * *'
+    - cron: '0 16 * * *'
 
 jobs:
   bot:
@@ -15,7 +15,7 @@ jobs:
       - name: 'Get Weather'
         run: bash ./weather.sh
       - name: 'Get Date'
-        run: echo "REPORT_DATE=$(TZ=':Asia/Wuhan' date '+%Y-%m-%d %T')" >> $GITHUB_ENV
+        run: echo "REPORT_DATE=$(TZ=':Asia/Wuhan' date '+%Y-%m-%d')" >> $GITHUB_ENV
       - name: 'Send mail'
         uses: dawidd6/action-send-mail@master
         with:
@@ -23,7 +23,7 @@ jobs:
           server_port: 465
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          subject: 武汉天气预报 (${{env.REPORT_DATE}})
+          subject: 天气预报-Wuhan (${{env.REPORT_DATE}})
           html_body: file://result.html
           to: 307330552@qq.com
           from: GitHub Actions
