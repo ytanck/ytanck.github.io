@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deploy My Server
+name: Rsync & Deploy To Server
 
 on:
   # push:
