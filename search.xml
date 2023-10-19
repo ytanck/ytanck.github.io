@@ -1167,64 +1167,6 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
       </tags>
   </entry>
   <entry>
-    <title>GitHub Actions 定时运行代码：每天定时百度链接推送</title>
-    <url>/post/413a7e2da9de/</url>
-    <content><![CDATA[<h1 id="GitHub-Actions-定时运行代码：每天定时百度链接推送"><a href="#GitHub-Actions-定时运行代码：每天定时百度链接推送" class="headerlink" title="GitHub Actions 定时运行代码：每天定时百度链接推送"></a>GitHub Actions 定时运行代码：每天定时百度链接推送</h1><p>GitHub Actions 是一个 CI&#x2F;CD（持续集成&#x2F;持续部署）工具，但也可用作代码运行环境。<strong>功能非常强大，能够玩出许多花样。</strong></p>
-<span id="more"></span>
-
-<h2 id="百度主动链接推送"><a href="#百度主动链接推送" class="headerlink" title="百度主动链接推送"></a>百度主动链接推送</h2><p>链接主动推送在百度站长中有介绍</p>
-<p>具体使用方法就是创建一个文件<code>urls.txt</code>，文件内每行一条链接的格式写入提交的多个链接</p>
-<p>运行命令</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -H <span class="string">&#x27;Content-Type:text/plain&#x27;</span> --data-binary @urls.txt <span class="string">&quot;http://data.zz.baidu.com/urls?site=xxx.com&amp;token=T5PEAzhG*****&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面命令的地址和参数由百度站长提供。运行完命令会返回推送结果，不出意外的话就会把<code>urls.txt</code>内的所有链接一次性推送给百度。</p>
-<p>这个方法虽然比嵌入网站头部的自动推送更高效，但是也有它的麻烦之处，就是得自己填入链接到<code>urls.txt</code>文件，然后手动运行命令。</p>
-<h2 id="自动生成urls-txt"><a href="#自动生成urls-txt" class="headerlink" title="自动生成urls.txt"></a>自动生成urls.txt</h2><p>没关系，技术的本质就是让人”偷懒”的。于是，我写了一个nodejs工具，用于把所有的博客页面链接生成到<code>urls.txt</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// baiduPush.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成百度链接推送文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">&#x27;tracer&#x27;</span>).<span class="title function_">colorConsole</span>();</span><br><span class="line"><span class="keyword">const</span> matter = <span class="built_in">require</span>(<span class="string">&#x27;gray-matter&#x27;</span>); <span class="comment">// FrontMatter解析器 https://github.com/jonschlinkert/gray-matter</span></span><br><span class="line"><span class="keyword">const</span> readFileList = <span class="built_in">require</span>(<span class="string">&#x27;./modules/readFileList&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> urlsRoot = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;urls.txt&#x27;</span>); <span class="comment">// 百度链接推送文件</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DOMAIN</span> = process.<span class="property">argv</span>.<span class="title function_">splice</span>(<span class="number">2</span>)[<span class="number">0</span>]; <span class="comment">// 获取命令行传入的参数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable constant_">DOMAIN</span>) &#123;</span><br><span class="line">  logger.<span class="title function_">error</span>(<span class="string">&#x27;请在运行此文件时指定一个你要进行百度推送的域名参数，例：node utils/baiduPush.js https://xxx.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">main</span>();</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">  fs.<span class="title function_">writeFileSync</span>(urlsRoot, <span class="variable constant_">DOMAIN</span>)</span><br><span class="line">  <span class="keyword">const</span> files = <span class="title function_">readFileList</span>(); <span class="comment">// 读取所有md文件数据</span></span><br><span class="line"></span><br><span class="line">  files.<span class="title function_">forEach</span>( <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; data &#125; = <span class="title function_">matter</span>(fs.<span class="title function_">readFileSync</span>(file.<span class="property">filePath</span>, <span class="string">&#x27;utf8&#x27;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (data.<span class="property">permalink</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> link = <span class="string">`\r\n<span class="subst">$&#123;DOMAIN&#125;</span><span class="subst">$&#123;data.permalink&#125;</span>/`</span>;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(link)</span><br><span class="line">      fs.<span class="title function_">appendFileSync</span>(urlsRoot, link);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面代码仅是针对我个人的博客生成链接到<code>urls.txt</code>文件。</p>
-<p>运行如下命令就可以生产一个包含博客所有链接的<code>urls.txt</code>文件：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">node utils/baiduPush.js https://xxx.com</span><br></pre></td></tr></table></figure>
-<p>哈哈，第一个麻烦解决了:smirk:，接下来是解决第二个需要手动运行推送命令的问题。</p>
-<blockquote>
-<p><strong>如果你没办法自动生成，你也可以自己手动创建一个<code>urls.txt</code>文件，放到github仓库。</strong></p>
-</blockquote>
-<h2 id="GitHub-Actions-定时运行代码"><a href="#GitHub-Actions-定时运行代码" class="headerlink" title="GitHub Actions 定时运行代码"></a>GitHub Actions 定时运行代码</h2><p>今天的主角GitHub Actions 要登场了。（相关：<a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html?20191227113947#comment-last">GitHub Actions 入门教程</a></p>
-<p>GitHub Actions 是一个 CI&#x2F;CD（持续集成&#x2F;持续部署）工具，但也可用作代码运行环境。<strong>功能非常强大，能够玩出许多花样。</strong></p>
-<h3 id="配置-GitHub-Actions"><a href="#配置-GitHub-Actions" class="headerlink" title="配置 GitHub Actions"></a>配置 GitHub Actions</h3><p>触发 GitHub Actions 需要在项目仓库新建一个<code>.github/workflows</code>子目录，里面是 YAML 格式配置文件，文件名可以随便取。GitHub 只要发现配置文件，就会运行 Actions。</p>
-<p>配置文件的第一部分是触发条件。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">## baiduPush.yml</span></span><br><span class="line">name: <span class="string">&#x27;baiduPush&#x27;</span></span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">  schedule:</span><br><span class="line">    - cron: <span class="string">&#x27;0 23 * * *&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，<code>name</code>字段是配置文件的描述，<code>on</code>字段是触发条件。我们指定两种情况下触发，第一种是代码 Push 进仓库，第二种是<a href="https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule">定时任务</a>，每天在国际标准时间23点（北京时间+8，即早上7点）运行。</p>
-<blockquote>
-<p>定时设置看<a href="https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule">这里</a></p>
-</blockquote>
-<p>接着，就是运行流程。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">jobs</span>:</span><br><span class="line">  bot:</span><br><span class="line">    runs-on: ubuntu-latest <span class="comment"># 运行环境为最新版的Ubuntu</span></span><br><span class="line">    steps:</span><br><span class="line">      - name: <span class="string">&#x27;Checkout codes&#x27;</span> <span class="comment"># 步骤一，获取仓库代码</span></span><br><span class="line">        uses: actions/checkout@v1</span><br><span class="line">      - name: <span class="string">&#x27;Run baiduPush.sh&#x27;</span> <span class="comment"># 步骤二，执行sh命令文件</span></span><br><span class="line">        run: npm install &amp;&amp; npm run baiduPush <span class="comment"># 运行命令。（注意，运行目录是仓库根目录）</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，指定运行环境是最新的ubuntu，流程的第一步是从代码仓库获取代码，第二步运行两个命令，先安装项目依赖，再运行写在<code>package.json</code>的<code>baiduPush</code>命令。</p>
-<h3 id="baiduPush命令在package-json配置"><a href="#baiduPush命令在package-json配置" class="headerlink" title="baiduPush命令在package.json配置"></a><code>baiduPush</code>命令在<code>package.json</code>配置</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	<span class="string">&quot;baiduPush&quot;</span>: <span class="string">&quot;node utils/baiduPush.js https://xxx.com &amp;&amp; bash baiduPush.sh&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面脚本中在<code>node utils/baiduPush.js</code>的后面加入你的域名参数。运行此命令生成<code>urls.txt</code>文件，然后执行<code>baiduPush.sh</code>文件。</p>
-<p>注意，在使用window系统时，请使用git bash命令窗运行上面的脚本。</p>
-<blockquote>
-<p><code>baiduPush</code>命令之所以没有放在<code>baiduPush.yml</code>的 run 里面是因为我想在本地也可以执行<code>npm run baiduPush</code>命令。</p>
-</blockquote>
-<h3 id="baiduPush-sh执行百度推送命令"><a href="#baiduPush-sh执行百度推送命令" class="headerlink" title="baiduPush.sh执行百度推送命令"></a><code>baiduPush.sh</code>执行百度推送命令</h3><p><code>baiduPush.sh</code>文件：</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度链接推送</span></span><br><span class="line">curl -H <span class="string">&#x27;Content-Type:text/plain&#x27;</span> --data-binary @urls.txt <span class="string">&quot;http://data.zz.baidu.com/urls?site=https://xxx.com&amp;token=T5PEAzhGa*****&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">rm</span> -rf urls.txt <span class="comment"># 灭迹</span></span><br></pre></td></tr></table></figure>
-
-<p>上面代码中，把<code>urls.txt</code>文件中的所有链接一次性推送。</p>
-<blockquote>
-<p>baiduPush.sh内的命令之所以没有写在<code>package.json</code>是因为我觉得命令太长了，不方便阅读。</p>
-</blockquote>
-<p>写好配置，推送到仓库，就会在每天的早上7点钟，自动运行命令生成一个包含博客所有页面链接的<code>urls.txt</code>文件，并把所有链接一次性推送到百度。麻麻再也不用担心我的网站不被收录~~:kissing_heart: :kissing_heart: :kissing_heart:</p>
-<p>在这个基础上可以扩展，使用GitHub Actions满足你自己的各种定时需求。</p>
-]]></content>
-      <categories>
-        <category>GitHub</category>
-      </categories>
-  </entry>
-  <entry>
     <title>ES6面试理论知识点汇总</title>
     <url>/post/b7a64886691a/</url>
     <content><![CDATA[<h3 id="一、问：ES6-是什么，为什么要学习它，不学习-ES6-会怎么样"><a href="#一、问：ES6-是什么，为什么要学习它，不学习-ES6-会怎么样" class="headerlink" title="一、问：ES6 是什么，为什么要学习它，不学习 ES6 会怎么样?"></a>一、问：ES6 是什么，为什么要学习它，不学习 ES6 会怎么样?</h3><p>答：ES6 是新一代的 JS 语言标准，对分 JS 语言核心内容做了升级优化，规范了 JS 使用标准，新增了 JS 原生方法，使得 JS 使用更加规范，更加优雅，更适合大型应用的开发。学习 ES6 是成为专业前端正规军的必经之路。不学习 ES6 也可以写代码打鬼子，但是最多只能当个游击队长。</p>
@@ -1329,6 +1271,64 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
         <tag>面试</tag>
         <tag>ES6</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>GitHub Actions 定时运行代码：每天定时百度链接推送</title>
+    <url>/post/413a7e2da9de/</url>
+    <content><![CDATA[<h1 id="GitHub-Actions-定时运行代码：每天定时百度链接推送"><a href="#GitHub-Actions-定时运行代码：每天定时百度链接推送" class="headerlink" title="GitHub Actions 定时运行代码：每天定时百度链接推送"></a>GitHub Actions 定时运行代码：每天定时百度链接推送</h1><p>GitHub Actions 是一个 CI&#x2F;CD（持续集成&#x2F;持续部署）工具，但也可用作代码运行环境。<strong>功能非常强大，能够玩出许多花样。</strong></p>
+<span id="more"></span>
+
+<h2 id="百度主动链接推送"><a href="#百度主动链接推送" class="headerlink" title="百度主动链接推送"></a>百度主动链接推送</h2><p>链接主动推送在百度站长中有介绍</p>
+<p>具体使用方法就是创建一个文件<code>urls.txt</code>，文件内每行一条链接的格式写入提交的多个链接</p>
+<p>运行命令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">curl -H <span class="string">&#x27;Content-Type:text/plain&#x27;</span> --data-binary @urls.txt <span class="string">&quot;http://data.zz.baidu.com/urls?site=xxx.com&amp;token=T5PEAzhG*****&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面命令的地址和参数由百度站长提供。运行完命令会返回推送结果，不出意外的话就会把<code>urls.txt</code>内的所有链接一次性推送给百度。</p>
+<p>这个方法虽然比嵌入网站头部的自动推送更高效，但是也有它的麻烦之处，就是得自己填入链接到<code>urls.txt</code>文件，然后手动运行命令。</p>
+<h2 id="自动生成urls-txt"><a href="#自动生成urls-txt" class="headerlink" title="自动生成urls.txt"></a>自动生成urls.txt</h2><p>没关系，技术的本质就是让人”偷懒”的。于是，我写了一个nodejs工具，用于把所有的博客页面链接生成到<code>urls.txt</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// baiduPush.js</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 生成百度链接推送文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> logger = <span class="built_in">require</span>(<span class="string">&#x27;tracer&#x27;</span>).<span class="title function_">colorConsole</span>();</span><br><span class="line"><span class="keyword">const</span> matter = <span class="built_in">require</span>(<span class="string">&#x27;gray-matter&#x27;</span>); <span class="comment">// FrontMatter解析器 https://github.com/jonschlinkert/gray-matter</span></span><br><span class="line"><span class="keyword">const</span> readFileList = <span class="built_in">require</span>(<span class="string">&#x27;./modules/readFileList&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> urlsRoot = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;urls.txt&#x27;</span>); <span class="comment">// 百度链接推送文件</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DOMAIN</span> = process.<span class="property">argv</span>.<span class="title function_">splice</span>(<span class="number">2</span>)[<span class="number">0</span>]; <span class="comment">// 获取命令行传入的参数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="variable constant_">DOMAIN</span>) &#123;</span><br><span class="line">  logger.<span class="title function_">error</span>(<span class="string">&#x27;请在运行此文件时指定一个你要进行百度推送的域名参数，例：node utils/baiduPush.js https://xxx.com&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">main</span>();</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">  fs.<span class="title function_">writeFileSync</span>(urlsRoot, <span class="variable constant_">DOMAIN</span>)</span><br><span class="line">  <span class="keyword">const</span> files = <span class="title function_">readFileList</span>(); <span class="comment">// 读取所有md文件数据</span></span><br><span class="line"></span><br><span class="line">  files.<span class="title function_">forEach</span>( <span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; data &#125; = <span class="title function_">matter</span>(fs.<span class="title function_">readFileSync</span>(file.<span class="property">filePath</span>, <span class="string">&#x27;utf8&#x27;</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (data.<span class="property">permalink</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> link = <span class="string">`\r\n<span class="subst">$&#123;DOMAIN&#125;</span><span class="subst">$&#123;data.permalink&#125;</span>/`</span>;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(link)</span><br><span class="line">      fs.<span class="title function_">appendFileSync</span>(urlsRoot, link);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码仅是针对我个人的博客生成链接到<code>urls.txt</code>文件。</p>
+<p>运行如下命令就可以生产一个包含博客所有链接的<code>urls.txt</code>文件：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">node utils/baiduPush.js https://xxx.com</span><br></pre></td></tr></table></figure>
+<p>哈哈，第一个麻烦解决了:smirk:，接下来是解决第二个需要手动运行推送命令的问题。</p>
+<blockquote>
+<p><strong>如果你没办法自动生成，你也可以自己手动创建一个<code>urls.txt</code>文件，放到github仓库。</strong></p>
+</blockquote>
+<h2 id="GitHub-Actions-定时运行代码"><a href="#GitHub-Actions-定时运行代码" class="headerlink" title="GitHub Actions 定时运行代码"></a>GitHub Actions 定时运行代码</h2><p>今天的主角GitHub Actions 要登场了。（相关：<a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html?20191227113947#comment-last">GitHub Actions 入门教程</a></p>
+<p>GitHub Actions 是一个 CI&#x2F;CD（持续集成&#x2F;持续部署）工具，但也可用作代码运行环境。<strong>功能非常强大，能够玩出许多花样。</strong></p>
+<h3 id="配置-GitHub-Actions"><a href="#配置-GitHub-Actions" class="headerlink" title="配置 GitHub Actions"></a>配置 GitHub Actions</h3><p>触发 GitHub Actions 需要在项目仓库新建一个<code>.github/workflows</code>子目录，里面是 YAML 格式配置文件，文件名可以随便取。GitHub 只要发现配置文件，就会运行 Actions。</p>
+<p>配置文件的第一部分是触发条件。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="comment">## baiduPush.yml</span></span><br><span class="line">name: <span class="string">&#x27;baiduPush&#x27;</span></span><br><span class="line"></span><br><span class="line">on:</span><br><span class="line">  push:</span><br><span class="line">  schedule:</span><br><span class="line">    - cron: <span class="string">&#x27;0 23 * * *&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，<code>name</code>字段是配置文件的描述，<code>on</code>字段是触发条件。我们指定两种情况下触发，第一种是代码 Push 进仓库，第二种是<a href="https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule">定时任务</a>，每天在国际标准时间23点（北京时间+8，即早上7点）运行。</p>
+<blockquote>
+<p>定时设置看<a href="https://help.github.com/en/actions/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule">这里</a></p>
+</blockquote>
+<p>接着，就是运行流程。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">jobs</span>:</span><br><span class="line">  bot:</span><br><span class="line">    runs-on: ubuntu-latest <span class="comment"># 运行环境为最新版的Ubuntu</span></span><br><span class="line">    steps:</span><br><span class="line">      - name: <span class="string">&#x27;Checkout codes&#x27;</span> <span class="comment"># 步骤一，获取仓库代码</span></span><br><span class="line">        uses: actions/checkout@v1</span><br><span class="line">      - name: <span class="string">&#x27;Run baiduPush.sh&#x27;</span> <span class="comment"># 步骤二，执行sh命令文件</span></span><br><span class="line">        run: npm install &amp;&amp; npm run baiduPush <span class="comment"># 运行命令。（注意，运行目录是仓库根目录）</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，指定运行环境是最新的ubuntu，流程的第一步是从代码仓库获取代码，第二步运行两个命令，先安装项目依赖，再运行写在<code>package.json</code>的<code>baiduPush</code>命令。</p>
+<h3 id="baiduPush命令在package-json配置"><a href="#baiduPush命令在package-json配置" class="headerlink" title="baiduPush命令在package.json配置"></a><code>baiduPush</code>命令在<code>package.json</code>配置</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	<span class="string">&quot;baiduPush&quot;</span>: <span class="string">&quot;node utils/baiduPush.js https://xxx.com &amp;&amp; bash baiduPush.sh&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面脚本中在<code>node utils/baiduPush.js</code>的后面加入你的域名参数。运行此命令生成<code>urls.txt</code>文件，然后执行<code>baiduPush.sh</code>文件。</p>
+<p>注意，在使用window系统时，请使用git bash命令窗运行上面的脚本。</p>
+<blockquote>
+<p><code>baiduPush</code>命令之所以没有放在<code>baiduPush.yml</code>的 run 里面是因为我想在本地也可以执行<code>npm run baiduPush</code>命令。</p>
+</blockquote>
+<h3 id="baiduPush-sh执行百度推送命令"><a href="#baiduPush-sh执行百度推送命令" class="headerlink" title="baiduPush.sh执行百度推送命令"></a><code>baiduPush.sh</code>执行百度推送命令</h3><p><code>baiduPush.sh</code>文件：</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment"># 百度链接推送</span></span><br><span class="line">curl -H <span class="string">&#x27;Content-Type:text/plain&#x27;</span> --data-binary @urls.txt <span class="string">&quot;http://data.zz.baidu.com/urls?site=https://xxx.com&amp;token=T5PEAzhGa*****&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">rm</span> -rf urls.txt <span class="comment"># 灭迹</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中，把<code>urls.txt</code>文件中的所有链接一次性推送。</p>
+<blockquote>
+<p>baiduPush.sh内的命令之所以没有写在<code>package.json</code>是因为我觉得命令太长了，不方便阅读。</p>
+</blockquote>
+<p>写好配置，推送到仓库，就会在每天的早上7点钟，自动运行命令生成一个包含博客所有页面链接的<code>urls.txt</code>文件，并把所有链接一次性推送到百度。麻麻再也不用担心我的网站不被收录~~:kissing_heart: :kissing_heart: :kissing_heart:</p>
+<p>在这个基础上可以扩展，使用GitHub Actions满足你自己的各种定时需求。</p>
+]]></content>
+      <categories>
+        <category>GitHub</category>
+      </categories>
   </entry>
   <entry>
     <title>GitHub Actions 实现自动部署静态博客</title>
@@ -2058,7 +2058,7 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/post/b24bb80dd05e/</url>
+    <url>/post/02c9552c52ad/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -3882,7 +3882,7 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
 <p>博客持续更新，欢迎 <code>Star</code> &amp; <code>watch</code>。</p>
 <p><strong>PS： 马上大四了，正在准备校招，如果各位大佬觉得博客写的还行的话，请砸面试机会给我。谢谢～</strong></p>
 <ul>
-<li>邮箱： <a href="mailto:&#x72;&#97;&#x69;&#110;&#x73;&#x74;&#x6f;&#114;&#x6d;&#x2e;&#109;&#x65;&#x40;&#x6f;&#117;&#x74;&#x6c;&#x6f;&#111;&#107;&#x2e;&#99;&#x6f;&#x6d;">&#x72;&#97;&#x69;&#110;&#x73;&#x74;&#x6f;&#114;&#x6d;&#x2e;&#109;&#x65;&#x40;&#x6f;&#117;&#x74;&#x6c;&#x6f;&#111;&#107;&#x2e;&#99;&#x6f;&#x6d;</a></li>
+<li>邮箱： <a href="mailto:&#x72;&#97;&#x69;&#110;&#115;&#116;&#111;&#x72;&#109;&#46;&#x6d;&#101;&#x40;&#111;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#99;&#x6f;&#109;">&#x72;&#97;&#x69;&#110;&#115;&#116;&#111;&#x72;&#109;&#46;&#x6d;&#101;&#x40;&#111;&#x75;&#x74;&#x6c;&#x6f;&#x6f;&#x6b;&#x2e;&#99;&#x6f;&#109;</a></li>
 <li>简历： <a href="https://github.com/c-rainstorm/Resume">https://github.com/c-rainstorm/Resume</a></li>
 </ul>
 <p><strong>另：非常感谢 <a href="https://www.daocloud.io/">DaoCloud</a> 公司提供的面试机会！</strong></p>
