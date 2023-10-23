@@ -2016,6 +2016,27 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/post/0daabad8e776/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>小案例</title>
     <url>/post/879bc48f9511/</url>
     <content><![CDATA[<h2 id="修改数组对象的属性（key）名"><a href="#修改数组对象的属性（key）名" class="headerlink" title="修改数组对象的属性（key）名"></a>修改数组对象的属性（key）名</h2><p>方法一</p>
@@ -2054,27 +2075,6 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
       </categories>
       <tags>
         <tag>JavaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/post/432083ee2516/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <tags>
-        <tag>test</tag>
       </tags>
   </entry>
   <entry>
@@ -3882,7 +3882,7 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
 <p>博客持续更新，欢迎 <code>Star</code> &amp; <code>watch</code>。</p>
 <p><strong>PS： 马上大四了，正在准备校招，如果各位大佬觉得博客写的还行的话，请砸面试机会给我。谢谢～</strong></p>
 <ul>
-<li>邮箱： <a href="mailto:&#x72;&#x61;&#x69;&#x6e;&#x73;&#116;&#111;&#114;&#x6d;&#x2e;&#109;&#x65;&#64;&#x6f;&#x75;&#x74;&#108;&#111;&#x6f;&#x6b;&#46;&#x63;&#111;&#x6d;">&#x72;&#x61;&#x69;&#x6e;&#x73;&#116;&#111;&#114;&#x6d;&#x2e;&#109;&#x65;&#64;&#x6f;&#x75;&#x74;&#108;&#111;&#x6f;&#x6b;&#46;&#x63;&#111;&#x6d;</a></li>
+<li>邮箱： <a href="mailto:&#x72;&#x61;&#105;&#x6e;&#115;&#x74;&#111;&#x72;&#x6d;&#46;&#109;&#x65;&#64;&#111;&#x75;&#x74;&#x6c;&#111;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;">&#x72;&#x61;&#105;&#x6e;&#115;&#x74;&#111;&#x72;&#x6d;&#46;&#109;&#x65;&#64;&#111;&#x75;&#x74;&#x6c;&#111;&#111;&#x6b;&#46;&#x63;&#111;&#x6d;</a></li>
 <li>简历： <a href="https://github.com/c-rainstorm/Resume">https://github.com/c-rainstorm/Resume</a></li>
 </ul>
 <p><strong>另：非常感谢 <a href="https://www.daocloud.io/">DaoCloud</a> 公司提供的面试机会！</strong></p>
