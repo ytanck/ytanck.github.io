@@ -20,4 +20,4 @@ jobs:
       - name: 'Checkout codes' # 步骤一，获取仓库代码
         uses: actions/checkout@v3
       - name: 'Run baiduPush' # 步骤二，执行sh命令文件
-        run: node utils/baiduPush.js https://yyff.wang && bash baiduPush.sh
+        run: node utils/baiduPush.js https://whyta.cn && bash baiduPush.sh

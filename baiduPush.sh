@@ -4,6 +4,6 @@
 set -e
 
 # 百度链接推送
-curl -H 'Content-Type:text/plain' --data-binary @urls.txt "http://data.zz.baidu.com/urls?site=https://www.yyff.wang&token=fxaKCQ0YTssN2AGw"
+curl -H 'Content-Type:text/plain' --data-binary @urls.txt "http://data.zz.baidu.com/urls?site=www.whyta.cn&token=fxaKCQ0YTssN2AGw"
 
 # rm -rf urls.txt # 删除文件
