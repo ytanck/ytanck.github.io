@@ -2484,7 +2484,7 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/post/50c680a63ad7/</url>
+    <url>/post/bcf27ee0e10a/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -3475,6 +3475,47 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
       </tags>
   </entry>
   <entry>
+    <title>前端常用的轮子</title>
+    <url>/post/fef193614e35/</url>
+    <content><![CDATA[<h2 id="React-UI-组件库"><a href="#React-UI-组件库" class="headerlink" title="React UI 组件库"></a>React UI 组件库</h2><ul>
+<li><a href="https://ant.design/">Ant Design</a></li>
+<li><a href="https://react-bootstrap.github.io/">React Bootstrap</a></li>
+<li><a href="https://material-ui.com/">MATERIAL-UI</a></li>
+</ul>
+<h2 id="Vue-UI组件库"><a href="#Vue-UI组件库" class="headerlink" title="Vue UI组件库"></a>Vue UI组件库</h2><ul>
+<li><a href="https://element.eleme.io/#/zh-CN">Element UI</a> PC端</li>
+<li><a href="https://youzan.github.io/vant/#/zh-CN/">Vant</a> 移动端</li>
+<li><a href="https://www.iviewui.com/">View UI</a></li>
+</ul>
+<h2 id="常用效果组件"><a href="#常用效果组件" class="headerlink" title="常用效果组件"></a>常用效果组件</h2><ul>
+<li><a href="https://animate.style/">Animate.css</a> 动画库</li>
+<li><a href="https://www.swiper.com.cn/">Swiper</a> 轮播组件</li>
+<li><a href="http://www.mescroll.com/">mescroll</a> 下拉刷新和上拉加载框架-基于原生JS</li>
+</ul>
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><ul>
+<li><a href="https://www.lodashjs.com/">Lodash.js</a></li>
+<li><a href="https://dayjs.fenxianglu.cn/">Day.js</a> 处理日期</li>
+<li><a href="https://github.com/hustcc/timeago.js">Timeago.js</a> 相对时间，如N小时前</li>
+<li><a href="https://echarts.apache.org/zh/index.html">Echarts</a> 百度图表</li>
+<li><a href="https://pandao.github.io/editor.md/">Meditor.md</a> 开源在线 Markdown 编辑器</li>
+<li><a href="https://github.com/validatorjs/validator.js">validator.js</a> 验证库</li>
+</ul>
+<h2 id="Vue工具类"><a href="#Vue工具类" class="headerlink" title="Vue工具类"></a>Vue工具类</h2><ul>
+<li><a href="https://www.itxst.com/vue-draggable/tutorial.html">vue-draggable</a> 基于Sortable.js实现的vue拖拽插件</li>
+<li><a href="https://www.npmjs.com/package/vue-qr">vue-qr</a> 文本转二维码</li>
+<li><a href="https://github.com/xyxiao001/vue-cropper">vue-cropper</a> 图片裁剪插件</li>
+<li><a href="https://www.npmjs.com/package/vue-lazyload">vue-lazyload</a> 懒加载</li>
+<li><a href="https://github.com/saivarunk/vue-simple-upload">vue-simple-upload</a> 上传组件</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><a href="https://github.com/linjc/smooth-signature">H5带笔锋手写签名，支持PC端和移动端</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+  </entry>
+  <entry>
     <title>图片加载不出来，使用默认图片的三种方法</title>
     <url>/post/a07779cfb79d/</url>
     <content><![CDATA[<h2 id="vue-自定义指令，图片加载不出来，使用默认图片的三种方法"><a href="#vue-自定义指令，图片加载不出来，使用默认图片的三种方法" class="headerlink" title="vue 自定义指令，图片加载不出来，使用默认图片的三种方法"></a>vue 自定义指令，图片加载不出来，使用默认图片的三种方法</h2><h3 id="一、常规解决方法"><a href="#一、常规解决方法" class="headerlink" title="一、常规解决方法"></a>一、常规解决方法</h3><p>我们都知道，img 标签支持 onerror 事件，在装载文档或图像的过程中如果发生了错误，就会触发 onerror 事件。可以使用一张提示错误的图片代替显示不了的图片。</p>
@@ -4125,7 +4166,7 @@ bind 的实现思路和 call 一致，仅参数处理略有差别。如下：<fi
 <p>博客持续更新，欢迎 <code>Star</code> &amp; <code>watch</code>。</p>
 <p><strong>PS： 马上大四了，正在准备校招，如果各位大佬觉得博客写的还行的话，请砸面试机会给我。谢谢～</strong></p>
 <ul>
-<li>邮箱： <a href="mailto:&#114;&#x61;&#105;&#x6e;&#x73;&#116;&#x6f;&#114;&#x6d;&#x2e;&#x6d;&#x65;&#64;&#111;&#x75;&#116;&#x6c;&#x6f;&#x6f;&#x6b;&#46;&#99;&#111;&#x6d;">&#114;&#x61;&#105;&#x6e;&#x73;&#116;&#x6f;&#114;&#x6d;&#x2e;&#x6d;&#x65;&#64;&#111;&#x75;&#116;&#x6c;&#x6f;&#x6f;&#x6b;&#46;&#99;&#111;&#x6d;</a></li>
+<li>邮箱： <a href="mailto:&#x72;&#97;&#x69;&#x6e;&#x73;&#x74;&#111;&#114;&#x6d;&#46;&#109;&#x65;&#64;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#107;&#x2e;&#99;&#x6f;&#x6d;">&#x72;&#97;&#x69;&#x6e;&#x73;&#x74;&#111;&#114;&#x6d;&#46;&#109;&#x65;&#64;&#x6f;&#117;&#x74;&#108;&#x6f;&#111;&#107;&#x2e;&#99;&#x6f;&#x6d;</a></li>
 <li>简历： <a href="https://github.com/c-rainstorm/Resume">https://github.com/c-rainstorm/Resume</a></li>
 </ul>
 <p><strong>另：非常感谢 <a href="https://www.daocloud.io/">DaoCloud</a> 公司提供的面试机会！</strong></p>
