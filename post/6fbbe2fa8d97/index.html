@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？ | YT 前端日记</title><meta name="author" content="Yang Tao"><meta name="copyright" content="Yang Tao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？  一、背景在前面文章了解中，我们了解到redux是用于数据状态管理，而react是一个视图层面的库 如果将两者连接在一起，可以使用官方推荐react-redux库，其具有高效且灵活的特性 react-redux将组件分成：  容器组件：存在逻辑处理 UI 组件：只负责现显示和交互，内部不处理逻辑，状态由外部控制  通过r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？">
+<meta property="og:url" content="https://whyta.cn/post/6fbbe2fa8d97/index.html">
+<meta property="og:site_name" content="YT 前端日记">
+<meta property="og:description" content="面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？  一、背景在前面文章了解中，我们了解到redux是用于数据状态管理，而react是一个视图层面的库 如果将两者连接在一起，可以使用官方推荐react-redux库，其具有高效且灵活的特性 react-redux将组件分成：  容器组件：存在逻辑处理 UI 组件：只负责现显示和交互，内部不处理逻辑，状态由外部控制  通过r">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg">
+<meta property="article:published_time" content="2023-01-01T10:08:16.000Z">
+<meta property="article:modified_time" content="2023-11-10T09:06:01.549Z">
+<meta property="article:author" content="Yang Tao">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://whyta.cn/post/6fbbe2fa8d97/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-10 09:06:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">284</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/about/resume.html"><i class="fa-fw fa fa-address-card"></i><span> 简历</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系我</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiaojinhe-cdn.iyoudui.cn/upload/common/20230808/6028094.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="YT 前端日记"><img class="site-icon" src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg"/><span class="site-name">YT 前端日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/about/resume.html"><i class="fa-fw fa fa-address-card"></i><span> 简历</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系我</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-01T10:08:16.000Z" title="发表于 2023-01-01 10:08:16">2023-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-10T09:06:01.549Z" title="更新于 2023-11-10 09:06:01">2023-11-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95/React/">React</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">903</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/6fbbe2fa8d97/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="面试官：你在React项目中是如何使用Redux的-项目结构是如何划分的？"><a href="#面试官：你在React项目中是如何使用Redux的-项目结构是如何划分的？" class="headerlink" title="面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？"></a>面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？</h1><p> <img src="https://static.vue-js.com/31a4aff0-e7dc-11eb-ab90-d9ae814b240d.png"></p>
+<h2 id="一、背景"><a href="#一、背景" class="headerlink" title="一、背景"></a>一、背景</h2><p>在前面文章了解中，我们了解到<code>redux</code>是用于数据状态管理，而<code>react</code>是一个视图层面的库</p>
+<p>如果将两者连接在一起，可以使用官方推荐<code>react-redux</code>库，其具有高效且灵活的特性</p>
+<p><code>react-redux</code>将组件分成：</p>
+<ul>
+<li>容器组件：存在逻辑处理</li>
+<li>UI 组件：只负责现显示和交互，内部不处理逻辑，状态由外部控制</li>
+</ul>
+<p>通过<code>redux</code>将整个应用状态存储到<code>store</code>中，组件可以派发<code>dispatch</code>行为<code>action</code>给<code>store</code></p>
+<p>其他组件通过订阅<code>store</code>中的状态<code>state</code>来更新自身的视图</p>
+<h2 id="二、如何做"><a href="#二、如何做" class="headerlink" title="二、如何做"></a>二、如何做</h2><p>使用<code>react-redux</code>分成了两大核心：</p>
+<ul>
+<li>Provider</li>
+<li>connection</li>
+</ul>
+<h3 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h3><p>在<code>redux</code>中存在一个<code>store</code>用于存储<code>state</code>，如果将这个<code>store</code>存放在顶层元素中，其他组件都被包裹在顶层元素之上</p>
+<p>那么所有的组件都能够受到<code>redux</code>的控制，都能够获取到<code>redux</code>中的数据</p>
+<p>使用方式如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Provider</span> store = &#123;store&#125;&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span></span><br><span class="line">&lt;<span class="title class_">Provider</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="connection"><a href="#connection" class="headerlink" title="connection"></a>connection</h3><p><code>connect</code>方法将<code>store</code>上的<code>getState </code>和 <code>dispatch </code>包装成组件的<code>props</code></p>
+<p>导入<code>conect</code>如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">&quot;react-redux&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>用法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">connect</span>(mapStateToProps, mapDispatchToProps)(<span class="title class_">MyComponent</span>)</span><br></pre></td></tr></table></figure>
+
+<p>可以传递两个参数：</p>
+<ul>
+<li><p>mapStateToProps</p>
+</li>
+<li><p>mapDispatchToProps</p>
+</li>
+</ul>
+<h3 id="mapStateToProps"><a href="#mapStateToProps" class="headerlink" title="mapStateToProps"></a>mapStateToProps</h3><p>把<code>redux</code>中的数据映射到<code>react</code>中的<code>props</code>中去</p>
+<p>如下：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">mapStateToProps</span> = (<span class="params">state</span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">// prop : state.xxx  | 意思是将state中的某个数据映射到props中</span></span><br><span class="line">        <span class="attr">foo</span>: state.<span class="property">bar</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>组件内部就能够通过<code>props</code>获取到<code>store</code>中的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Foo extends Component &#123;</span><br><span class="line">    constructor(props)&#123;</span><br><span class="line">        super(props);</span><br><span class="line">    &#125;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">         // 这样子渲染的其实就是state.bar的数据了</span><br><span class="line">            &lt;div&gt;this.props.foo&lt;/div&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Foo = connect()(Foo)</span><br><span class="line">export default Foo</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="mapDispatchToProps"><a href="#mapDispatchToProps" class="headerlink" title="mapDispatchToProps"></a>mapDispatchToProps</h3><p>将<code>redux</code>中的<code>dispatch</code>映射到组件内部的<code>props</code>中</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">mapDispatchToProps</span> = (<span class="params">dispatch</span>) =&gt; &#123; <span class="comment">// 默认传递参数就是dispatch</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">onClick</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">dispatch</span>(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;increatment&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">props</span>)&#123;</span><br><span class="line">        <span class="variable language_">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">render</span>(<span class="params"></span>)&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">         </span><br><span class="line">             <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span> = <span class="string">&#123;this.props.onClick&#125;</span>&gt;</span>点击increase<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Foo</span> = <span class="title function_">connect</span>()(<span class="title class_">Foo</span>);</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Foo</span>;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>整体流程图大致如下所示：</p>
+<p> <img src="https://static.vue-js.com/3e47db10-e7dc-11eb-85f6-6fac77c0c9b3.png"></p>
+<h2 id="三、项目结构"><a href="#三、项目结构" class="headerlink" title="三、项目结构"></a>三、项目结构</h2><p>可以根据项目具体情况进行选择，以下列出两种常见的组织结构</p>
+<h4 id="按角色组织（MVC）"><a href="#按角色组织（MVC）" class="headerlink" title="按角色组织（MVC）"></a>按角色组织（MVC）</h4><p>角色如下：</p>
+<ul>
+<li>reducers </li>
+<li>actions</li>
+<li>components </li>
+<li>containers</li>
+</ul>
+<p>参考如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">reducers/</span><br><span class="line">  todoReducer.<span class="property">js</span></span><br><span class="line">  filterReducer.<span class="property">js</span></span><br><span class="line">actions/</span><br><span class="line">  todoAction.<span class="property">js</span></span><br><span class="line">  filterActions.<span class="property">js</span></span><br><span class="line">components/</span><br><span class="line">  todoList.<span class="property">js</span></span><br><span class="line">  todoItem.<span class="property">js</span></span><br><span class="line">  filter.<span class="property">js</span></span><br><span class="line">containers/</span><br><span class="line">  todoListContainer.<span class="property">js</span></span><br><span class="line">  todoItemContainer.<span class="property">js</span></span><br><span class="line">  filterContainer.<span class="property">js</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="按功能组织"><a href="#按功能组织" class="headerlink" title="按功能组织"></a>按功能组织</h4><p>使用<code>redux</code>使用功能组织项目，也就是把完成同一应用功能的代码放在一个目录下，一个应用功能包含多个角色的代码</p>
+<p><code>Redux</code>中，不同的角色就是<code>reducer</code>、<code>actions</code>和视图，而应用功能对应的就是用户界面的交互模块</p>
+<p>参考如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">todoList/</span><br><span class="line">  actions.<span class="property">js</span></span><br><span class="line">  actionTypes.<span class="property">js</span></span><br><span class="line">  index.<span class="property">js</span></span><br><span class="line">  reducer.<span class="property">js</span></span><br><span class="line">  views/</span><br><span class="line">    components.<span class="property">js</span></span><br><span class="line">    containers.<span class="property">js</span></span><br><span class="line">filter/</span><br><span class="line">  actions.<span class="property">js</span></span><br><span class="line">  actionTypes.<span class="property">js</span></span><br><span class="line">  index.<span class="property">js</span></span><br><span class="line">  reducer.<span class="property">js</span></span><br><span class="line">  views/</span><br><span class="line">    components.<span class="property">js</span></span><br><span class="line">    container.<span class="property">js</span></span><br></pre></td></tr></table></figure>
+
+<p>每个功能模块对应一个目录，每个目录下包含同样的角色文件：</p>
+<ul>
+<li>actionTypes.js 定义action类型</li>
+<li>actions.js 定义action构造函数</li>
+<li>reducer.js  定义这个功能模块如果响应actions.js定义的动作</li>
+<li>views 包含功能模块中所有的React组件，包括展示组件和容器组件</li>
+<li>index.js 把所有的角色导入，统一导出</li>
+</ul>
+<p>其中<code>index</code>模块用于导出对外的接口</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> actions <span class="keyword">from</span> <span class="string">&#x27;./actions.js&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">&#x27;./reducer.js&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> view <span class="keyword">from</span> <span class="string">&#x27;./views/container.js&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; actions, reducer, view &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>导入方法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; actions, reducer, view <span class="keyword">as</span> <span class="title class_">TodoList</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./xxxx&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.redux.org.cn/docs/basics/UsageWithReact.html">https://www.redux.org.cn/docs/basics/UsageWithReact.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010384268">https://segmentfault.com/a/1190000010384268</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://whyta.cn">Yang Tao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://whyta.cn/post/6fbbe2fa8d97/">https://whyta.cn/post/6fbbe2fa8d97/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whyta.cn" target="_blank">YT 前端日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/React/">React</a></div><div class="post_share"><div class="social-share" data-image="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/b016b80c2285/" title="面试官：React中组件之间如何通信？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">面试官：React中组件之间如何通信？</div></div></a></div><div class="next-post pull-right"><a href="/post/a2b2fba3a1b0/" title="面试官：说说React diff的原理是什么？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">面试官：说说React diff的原理是什么？</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/af47571a2bb8/" title="面试官：React事件绑定的方式有哪些？区别？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：React事件绑定的方式有哪些？区别？</div></div></a></div><div><a href="/post/15b3e8abcf8f/" title="面试官：React构建组件的方式有哪些？区别？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：React构建组件的方式有哪些？区别？</div></div></a></div><div><a href="/post/232da7b67c70/" title="面试官：说说对Fiber架构的理解？解决了什么问题？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说对Fiber架构的理解？解决了什么问题？</div></div></a></div><div><a href="/post/8d761f218aa9/" title="面试官：说说对高阶组件的理解？应用场景?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说对高阶组件的理解？应用场景?</div></div></a></div><div><a href="/post/6f73a3cd5443/" title="面试官：说说 React 性能优化的手段有哪些？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说 React 性能优化的手段有哪些？</div></div></a></div><div><a href="/post/cfa58acc4b57/" title="面试官：说说React Jsx转换成真实DOM过程？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说React Jsx转换成真实DOM过程？</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">Gitalk</span><span id="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Yang Tao</div><div class="author-info__description">share & study</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">284</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ytking"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ytking" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yt_anck@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">=>一个优秀的CV大师的个人网站，主要内容是Web前端技术。如果喜欢，欢迎Star!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E4%BD%A0%E5%9C%A8React%E9%A1%B9%E7%9B%AE%E4%B8%AD%E6%98%AF%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Redux%E7%9A%84-%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%92%E5%88%86%E7%9A%84%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">面试官：你在React项目中是如何使用Redux的? 项目结构是如何划分的？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">一、背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%A6%82%E4%BD%95%E5%81%9A"><span class="toc-number">1.2.</span> <span class="toc-text">二、如何做</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Provider"><span class="toc-number">1.2.1.</span> <span class="toc-text">Provider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#connection"><span class="toc-number">1.2.2.</span> <span class="toc-text">connection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapStateToProps"><span class="toc-number">1.2.3.</span> <span class="toc-text">mapStateToProps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapDispatchToProps"><span class="toc-number">1.2.4.</span> <span class="toc-text">mapDispatchToProps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-number">1.2.5.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">三、项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E8%A7%92%E8%89%B2%E7%BB%84%E7%BB%87%EF%BC%88MVC%EF%BC%89"><span class="toc-number">1.3.0.1.</span> <span class="toc-text">按角色组织（MVC）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8C%89%E5%8A%9F%E8%83%BD%E7%BB%84%E7%BB%87"><span class="toc-number">1.3.0.2.</span> <span class="toc-text">按功能组织</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.4.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4ef8d9f10de8/" title="我的GitHub首页">我的GitHub首页</a><time datetime="2023-11-10T09:06:01.565Z" title="发表于 2023-11-10 09:06:01">2023-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/a332e335877a/" title="多种数组去重性能对比">多种数组去重性能对比</a><time datetime="2023-11-06T10:12:54.000Z" title="发表于 2023-11-06 10:12:54">2023-11-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/47639946b6d6/" title="中文转拼音函数">中文转拼音函数</a><time datetime="2023-11-03T14:28:26.000Z" title="发表于 2023-11-03 14:28:26">2023-11-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/709a013c850b/" title="常用meta整理">常用meta整理</a><time datetime="2023-11-02T11:40:32.000Z" title="发表于 2023-11-02 11:40:32">2023-11-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/94236b9656f1/" title="使用Gitalk实现静态博客无后台评论系统">使用Gitalk实现静态博客无后台评论系统</a><time datetime="2023-10-31T18:19:17.000Z" title="发表于 2023-10-31 18:19:17">2023-10-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Yang Tao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: '82c5496065cfe6d3d6d6',
+      clientSecret: '798e420c011e4d4eb32f94b0e6261830a24c3c96',
+      repo: 'ytking.github.io',
+      owner: 'ytking',
+      admin: ['ytking'],
+      id: '7545838107e7ec5f1a8245daf7722165',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'epBB1Z21rnGhwEtsu57MeE1d-gzGzoHsz',
+      appKey: 'jzsxVdOEZgUj76hevYcbr4pV',
+      avatar: '',
+      serverURLs: 'https://epbb1z21.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Gitalk' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'PhLXQufxgCL6iLDEc'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

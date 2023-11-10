@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>面试官：说说你对 TypeScript 中类的理解？应用场景？ | YT 前端日记</title><meta name="author" content="Yang Tao"><meta name="copyright" content="Yang Tao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="面试官：说说你对 TypeScript 中类的理解？应用场景？  一、是什么类（Class）是面向对象程序设计（OOP，Object-Oriented Programming）实现信息封装的基础  类是一种用户定义的引用数据类型，也称类类型  传统的面向对象语言基本都是基于类的，JavaScript 基于原型的方式让开发者多了很多理解成本 在 ES6 之后，JavaScript 拥有了 class">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试官：说说你对 TypeScript 中类的理解？应用场景？">
+<meta property="og:url" content="https://whyta.cn/post/d60ec134c3af/index.html">
+<meta property="og:site_name" content="YT 前端日记">
+<meta property="og:description" content="面试官：说说你对 TypeScript 中类的理解？应用场景？  一、是什么类（Class）是面向对象程序设计（OOP，Object-Oriented Programming）实现信息封装的基础  类是一种用户定义的引用数据类型，也称类类型  传统的面向对象语言基本都是基于类的，JavaScript 基于原型的方式让开发者多了很多理解成本 在 ES6 之后，JavaScript 拥有了 class">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg">
+<meta property="article:published_time" content="2023-01-01T10:08:16.000Z">
+<meta property="article:modified_time" content="2023-11-10T09:06:01.557Z">
+<meta property="article:author" content="Yang Tao">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://whyta.cn/post/d60ec134c3af/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '面试官：说说你对 TypeScript 中类的理解？应用场景？',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-10 09:06:01'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">284</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/about/resume.html"><i class="fa-fw fa fa-address-card"></i><span> 简历</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系我</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiaojinhe-cdn.iyoudui.cn/upload/common/20230808/6028094.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="YT 前端日记"><img class="site-icon" src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg"/><span class="site-name">YT 前端日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/about/resume.html"><i class="fa-fw fa fa-address-card"></i><span> 简历</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系我</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">面试官：说说你对 TypeScript 中类的理解？应用场景？</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-01T10:08:16.000Z" title="发表于 2023-01-01 10:08:16">2023-01-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-11-10T09:06:01.557Z" title="更新于 2023-11-10 09:06:01">2023-11-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95/TypeScript/">TypeScript</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="面试官：说说你对 TypeScript 中类的理解？应用场景？"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/d60ec134c3af/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="面试官：说说你对-TypeScript-中类的理解？应用场景？"><a href="#面试官：说说你对-TypeScript-中类的理解？应用场景？" class="headerlink" title="面试官：说说你对 TypeScript 中类的理解？应用场景？"></a>面试官：说说你对 TypeScript 中类的理解？应用场景？</h1><p> <img src="https://static.vue-js.com/e4c19060-0cb4-11ec-a752-75723a64e8f5.png"></p>
+<h2 id="一、是什么"><a href="#一、是什么" class="headerlink" title="一、是什么"></a>一、是什么</h2><p>类（Class）是面向对象程序设计（OOP，Object-Oriented Programming）实现信息封装的基础</p>
+<blockquote>
+<p>类是一种用户定义的引用数据类型，也称类类型</p>
+</blockquote>
+<p>传统的面向对象语言基本都是基于类的，<code>JavaScript</code> 基于原型的方式让开发者多了很多理解成本</p>
+<p>在 <code>ES6</code> 之后，<code>JavaScript</code> 拥有了 <code>class</code> 关键字，虽然本质依然是构造函数，但是使用起来已经方便了许多</p>
+<p>但是<code> JavaScript</code> 的<code>class</code>依然有一些特性还没有加入，比如修饰符和抽象类</p>
+<p><code>TypeScript</code> 的 <code>class</code>  支持面向对象的所有特性，比如 类、接口等</p>
+<h2 id="二、使用方式"><a href="#二、使用方式" class="headerlink" title="二、使用方式"></a>二、使用方式</h2><p>定义类的关键字为 <code>class</code>，后面紧跟类名，类可以包含以下几个模块（类的数据成员）：</p>
+<ul>
+<li><strong>字段</strong> ： 字段是类里面声明的变量。字段表示对象的有关数据。</li>
+<li><strong>构造函数</strong>： 类实例化时调用，可以为类的对象分配内存。</li>
+<li><strong>方法</strong>： 方法为对象要执行的操作</li>
+</ul>
+<p>如下例子：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Car</span> &#123;</span><br><span class="line">    <span class="comment">// 字段</span></span><br><span class="line">    <span class="attr">engine</span>:<span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">engine:<span class="built_in">string</span></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">engine</span> = engine</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 方法</span></span><br><span class="line">    <span class="title function_">disp</span>():<span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;发动机为 :   &quot;</span>+<span class="variable language_">this</span>.<span class="property">engine</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>类的继承使用过<code>extends</code>的关键字</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="title function_">move</span>(<span class="params">distanceInMeters: <span class="built_in">number</span> = <span class="number">0</span></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Animal moved <span class="subst">$&#123;distanceInMeters&#125;</span>m.`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Animal</span> &#123;</span><br><span class="line">    <span class="title function_">bark</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Woof! Woof!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dog = <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">dog.<span class="title function_">bark</span>();</span><br><span class="line">dog.<span class="title function_">move</span>(<span class="number">10</span>);</span><br><span class="line">dog.<span class="title function_">bark</span>();</span><br></pre></td></tr></table></figure>
+
+<p><code>Dog</code>是一个 派生类，它派生自 <code>Animal</code> 基类，派生类通常被称作子类，基类通常被称作 超类</p>
+<p><code>Dog</code>类继承了<code>Animal</code>类，因此实例<code>dog</code>也能够使用<code>Animal</code>类<code>move</code>方法</p>
+<p>同样，类继承后，子类可以对父类的方法重新定义，这个过程称之为方法的重写，通过<code>super</code>关键字是对父类的直接引用，该关键字可以引用父类的属性和方法，如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">PrinterClass</span> &#123;</span><br><span class="line">   <span class="title function_">doPrint</span>():<span class="built_in">void</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;父类的 doPrint() 方法。&quot;</span>)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">StringPrinter</span> <span class="keyword">extends</span> <span class="title class_ inherited__">PrinterClass</span> &#123;</span><br><span class="line">   <span class="title function_">doPrint</span>():<span class="built_in">void</span> &#123;</span><br><span class="line">      <span class="variable language_">super</span>.<span class="title function_">doPrint</span>() <span class="comment">// 调用父类的函数</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;子类的 doPrint()方法。&quot;</span>)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h3><p>可以看到，上述的形式跟<code>ES6</code>十分的相似，<code>typescript</code>在此基础上添加了三种修饰符：</p>
+<ul>
+<li>公共 public：可以自由的访问类程序里定义的成员</li>
+<li>私有 private：只能够在该类的内部进行访问</li>
+<li>受保护 protect：除了在该类的内部可以访问，还可以在子类中仍然可以访问</li>
+</ul>
+<h3 id="私有修饰符"><a href="#私有修饰符" class="headerlink" title="私有修饰符"></a>私有修饰符</h3><p>只能够在该类的内部进行访问，实例对象并不能够访问</p>
+<p> <img src="https://static.vue-js.com/f57365f0-0cb4-11ec-a752-75723a64e8f5.png"></p>
+<p>并且继承该类的子类并不能访问，如下图所示：</p>
+<p> <img src="https://static.vue-js.com/0072cc20-0cb5-11ec-8e64-91fdec0f05a1.png"></p>
+<h3 id="受保护修饰符"><a href="#受保护修饰符" class="headerlink" title="受保护修饰符"></a>受保护修饰符</h3><p>跟私有修饰符很相似，实例对象同样不能访问受保护的属性，如下：</p>
+<p> <img src="https://static.vue-js.com/09e72580-0cb5-11ec-a752-75723a64e8f5.png"></p>
+<p>有一点不同的是 <code>protected</code> 成员在子类中仍然可以访问</p>
+<p> <img src="https://static.vue-js.com/137f81a0-0cb5-11ec-8e64-91fdec0f05a1.png"></p>
+<p>除了上述修饰符之外，还有只读<strong>修饰符</strong></p>
+<h4 id="只读修饰符"><a href="#只读修饰符" class="headerlink" title="只读修饰符"></a>只读修饰符</h4><p>通过<code>readonly</code>关键字进行声明，只读属性必须在声明时或构造函数里被初始化，如下：</p>
+<p> <img src="https://static.vue-js.com/1e848d20-0cb5-11ec-8e64-91fdec0f05a1.png"></p>
+<p>除了实例属性之外，同样存在静态属性</p>
+<h3 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h3><p>这些属性存在于类本身上面而不是类的实例上，通过<code>static</code>进行定义，访问这些属性需要通过 类型.静态属性 的这种形式访问，如下所示：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Square</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> width = <span class="string">&#x27;100px&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">Square</span>.<span class="property">width</span>) <span class="comment">// 100px</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>上述的类都能发现一个特点就是，都能够被实例化，在 <code>typescript</code>中，还存在一种抽象类</p>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>抽象类做为其它派生类的基类使用，它们一般不会直接被实例化，不同于接口，抽象类可以包含成员的实现细节</p>
+<p><code>abstract </code>关键字是用于定义抽象类和在抽象类内部定义抽象方法，如下所示：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="keyword">abstract</span> <span class="title function_">makeSound</span>(): <span class="built_in">void</span>;</span><br><span class="line">    <span class="title function_">move</span>(): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;roaming the earch...&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种类并不能被实例化，通常需要我们创建子类去继承，如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Cat</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Animal</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">makeSound</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;miao miao&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cat = <span class="keyword">new</span> <span class="title class_">Cat</span>()</span><br><span class="line"></span><br><span class="line">cat.<span class="title function_">makeSound</span>() <span class="comment">// miao miao</span></span><br><span class="line">cat.<span class="title function_">move</span>() <span class="comment">// roaming the earch...</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三、应用场景"><a href="#三、应用场景" class="headerlink" title="三、应用场景"></a>三、应用场景</h2><p>除了日常借助类的特性完成日常业务代码，还可以将类（class）也可以作为接口，尤其在 <code>React</code> 工程中是很常用的，如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Carousel</span> <span class="keyword">extends</span> <span class="title class_ inherited__">React.Component</span>&lt;<span class="title class_">Props</span>, <span class="title class_">State</span>&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由于组件需要传入 <code>props</code> 的类型 <code>Props</code> ，同时有需要设置默认 <code>props</code> 即 <code>defaultProps</code>，这时候更加适合使用<code>class</code>作为接口</p>
+<p>先声明一个类，这个类包含组件 <code>props</code> 所需的类型和初始值：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// props的类型</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Props</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="attr">children</span>: <span class="title class_">Array</span>&lt;<span class="title class_">React</span>.<span class="property">ReactElement</span>&lt;<span class="built_in">any</span>&gt;&gt; | <span class="title class_">React</span>.<span class="property">ReactElement</span>&lt;<span class="built_in">any</span>&gt; | <span class="built_in">never</span>[] = []</span><br><span class="line">  <span class="keyword">public</span> <span class="attr">speed</span>: <span class="built_in">number</span> = <span class="number">500</span></span><br><span class="line">  <span class="keyword">public</span> <span class="attr">height</span>: <span class="built_in">number</span> = <span class="number">160</span></span><br><span class="line">  <span class="keyword">public</span> <span class="attr">animation</span>: <span class="built_in">string</span> = <span class="string">&#x27;easeInOutQuad&#x27;</span></span><br><span class="line">  <span class="keyword">public</span> <span class="attr">isAuto</span>: <span class="built_in">boolean</span> = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">public</span> <span class="attr">autoPlayInterval</span>: <span class="built_in">number</span> = <span class="number">4500</span></span><br><span class="line">  <span class="keyword">public</span> <span class="attr">afterChange</span>: <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="attr">beforeChange</span>: <span class="function">() =&gt;</span> &#123;&#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="attr">selesctedColor</span>: <span class="built_in">string</span></span><br><span class="line">  <span class="keyword">public</span> <span class="attr">showDots</span>: <span class="built_in">boolean</span> = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当我们需要传入 <code>props</code> 类型的时候直接将 <code>Props</code> 作为接口传入，此时 <code>Props</code> 的作用就是接口，而当需要我们设置<code>defaultProps</code>初始值的时候，我们只需要:</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> defaultProps = <span class="keyword">new</span> <span class="title class_">Props</span>()</span><br></pre></td></tr></table></figure>
+
+<p><code>Props</code> 的实例就是 <code>defaultProps</code> 的初始值，这就是 <code>class </code>作为接口的实际应用，我们用一个 <code>class</code> 起到了接口和设置初始值两个作用，方便统一管理，减少了代码量</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/classes.html">https://www.tslang.cn/docs/handbook/classes.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/typescript/ts-class.html">https://www.runoob.com/typescript/ts-class.html</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://whyta.cn">Yang Tao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://whyta.cn/post/d60ec134c3af/">https://whyta.cn/post/d60ec134c3af/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whyta.cn" target="_blank">YT 前端日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/TypeScript/">TypeScript</a></div><div class="post_share"><div class="social-share" data-image="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/4fb2c8349c9a/" title="面试官：说说 typescript 的数据类型有哪些？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">面试官：说说 typescript 的数据类型有哪些？</div></div></a></div><div class="next-post pull-right"><a href="/post/4e2fbfaf7564/" title="面试官：说说你对 TypeScript 装饰器的理解？应用场景？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">面试官：说说你对 TypeScript 装饰器的理解？应用场景？</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/4fb2c8349c9a/" title="面试官：说说 typescript 的数据类型有哪些？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说 typescript 的数据类型有哪些？</div></div></a></div><div><a href="/post/4e2fbfaf7564/" title="面试官：说说你对 TypeScript 装饰器的理解？应用场景？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说你对 TypeScript 装饰器的理解？应用场景？</div></div></a></div><div><a href="/post/c4a97686966c/" title="面试官：说说你对 TypeScript 中枚举类型的理解？应用场景？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说你对 TypeScript 中枚举类型的理解？应用场景？</div></div></a></div><div><a href="/post/00912aee26cc/" title="面试官：说说你对 TypeScript 中泛型的理解？应用场景？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说你对 TypeScript 中泛型的理解？应用场景？</div></div></a></div><div><a href="/post/beda5ba1c215/" title="面试官：说说你对 TypeScript 中函数的理解？与 JavaScript 函数的区别？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说你对 TypeScript 中函数的理解？与 JavaScript 函数的区别？</div></div></a></div><div><a href="/post/c50e09c115bc/" title="面试官：说说你对 TypeScript 中高级类型的理解？有哪些？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说你对 TypeScript 中高级类型的理解？有哪些？</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">Gitalk</span><span id="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Yang Tao</div><div class="author-info__description">share & study</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">284</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ytking"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ytking" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yt_anck@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">=>一个优秀的CV大师的个人网站，主要内容是Web前端技术。如果喜欢，欢迎Star!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-TypeScript-%E4%B8%AD%E7%B1%BB%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9F%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">面试官：说说你对 TypeScript 中类的理解？应用场景？</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">一、是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">1.2.</span> <span class="toc-text">二、使用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number">1.2.1.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.2.2.</span> <span class="toc-text">修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%81%E6%9C%89%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.2.3.</span> <span class="toc-text">私有修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%97%E4%BF%9D%E6%8A%A4%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.2.4.</span> <span class="toc-text">受保护修饰符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AA%E8%AF%BB%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">只读修饰符</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%B1%9E%E6%80%A7"><span class="toc-number">1.2.5.</span> <span class="toc-text">静态属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number">1.2.6.</span> <span class="toc-text">抽象类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.3.</span> <span class="toc-text">三、应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="toc-number">1.4.</span> <span class="toc-text">参考文献</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/4ef8d9f10de8/" title="我的GitHub首页">我的GitHub首页</a><time datetime="2023-11-10T09:06:01.565Z" title="发表于 2023-11-10 09:06:01">2023-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/a332e335877a/" title="多种数组去重性能对比">多种数组去重性能对比</a><time datetime="2023-11-06T10:12:54.000Z" title="发表于 2023-11-06 10:12:54">2023-11-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/47639946b6d6/" title="中文转拼音函数">中文转拼音函数</a><time datetime="2023-11-03T14:28:26.000Z" title="发表于 2023-11-03 14:28:26">2023-11-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/709a013c850b/" title="常用meta整理">常用meta整理</a><time datetime="2023-11-02T11:40:32.000Z" title="发表于 2023-11-02 11:40:32">2023-11-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/94236b9656f1/" title="使用Gitalk实现静态博客无后台评论系统">使用Gitalk实现静态博客无后台评论系统</a><time datetime="2023-10-31T18:19:17.000Z" title="发表于 2023-10-31 18:19:17">2023-10-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By Yang Tao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: '82c5496065cfe6d3d6d6',
+      clientSecret: '798e420c011e4d4eb32f94b0e6261830a24c3c96',
+      repo: 'ytking.github.io',
+      owner: 'ytking',
+      admin: ['ytking'],
+      id: 'cb6f480f7caedeebfc0fb0b52b545295',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'epBB1Z21rnGhwEtsu57MeE1d-gzGzoHsz',
+      appKey: 'jzsxVdOEZgUj76hevYcbr4pV',
+      avatar: '',
+      serverURLs: 'https://epbb1z21.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Gitalk' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'PhLXQufxgCL6iLDEc'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
