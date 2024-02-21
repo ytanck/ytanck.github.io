@@ -1,0 +1,881 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>CSS 函数详解url、min、rgb、blur、scale、rotate、translate等 | 前端日记</title><meta name="author" content="YangTao"><meta name="copyright" content="YangTao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="随着技术的不断进步，CSS 已经从简单的样式表发展成为拥有众多内置函数的强大工具。这些函数不仅增强了开发者的设计能力，还使得样式应用更加动态、灵活和响应式。本文将深入探讨 CSS 常见的 66 个函数，逐一剖析它们的功能和用法，一起进入这个充满魔力的 CSS 函数世界！ 基础attr()attr() 函数用于获取被选中元素的某个 HTML 属性值，并在样式文件中使用该值。这个函数也可以应用于伪类元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS 函数详解url、min、rgb、blur、scale、rotate、translate等">
+<meta property="og:url" content="https://whyta.cn/post/416f91850271/index.html">
+<meta property="og:site_name" content="前端日记">
+<meta property="og:description" content="随着技术的不断进步，CSS 已经从简单的样式表发展成为拥有众多内置函数的强大工具。这些函数不仅增强了开发者的设计能力，还使得样式应用更加动态、灵活和响应式。本文将深入探讨 CSS 常见的 66 个函数，逐一剖析它们的功能和用法，一起进入这个充满魔力的 CSS 函数世界！ 基础attr()attr() 函数用于获取被选中元素的某个 HTML 属性值，并在样式文件中使用该值。这个函数也可以应用于伪类元">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg">
+<meta property="article:published_time" content="2024-02-20T11:22:16.000Z">
+<meta property="article:modified_time" content="2024-02-21T08:01:09.344Z">
+<meta property="article:author" content="YangTao">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://whyta.cn/post/416f91850271/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: YangTao","link":"链接: ","source":"来源: 前端日记","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'CSS 函数详解url、min、rgb、blur、scale、rotate、translate等',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-02-21 08:01:09'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">293</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/about/resume.html"><i class="fa-fw fa fa-address-card"></i><span> 简历</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系我</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://xiaojinhe-cdn.iyoudui.cn/upload/common/20230808/6028094.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="前端日记"><img class="site-icon" src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg"/><span class="site-name">前端日记</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 文档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/images/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li><li><a class="site-page child" href="/about/resume.html"><i class="fa-fw fa fa-address-card"></i><span> 简历</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 联系我</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">CSS 函数详解url、min、rgb、blur、scale、rotate、translate等</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-02-20T11:22:16.000Z" title="发表于 2024-02-20 11:22:16">2024-02-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-02-21T08:01:09.344Z" title="更新于 2024-02-21 08:01:09">2024-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CSS/">CSS</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">15.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>51分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="CSS 函数详解url、min、rgb、blur、scale、rotate、translate等"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/post/416f91850271/#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>随着技术的不断进步，CSS 已经从简单的样式表发展成为拥有众多内置函数的强大工具。这些函数不仅增强了开发者的设计能力，还使得样式应用更加动态、灵活和响应式。本文将深入探讨 CSS 常见的 66 个函数，逐一剖析它们的功能和用法，一起进入这个充满魔力的 CSS 函数世界！<br><img src="https://github.com/ytanck/ytanck/assets/69585768/bcc98f7a-dc70-4c49-9a7d-fdb13fe1d7c6" alt="image"></p>
+<h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="attr"><a href="#attr" class="headerlink" title="attr()"></a>attr()</h2><p><code>attr()</code> 函数用于获取被选中元素的某个 HTML 属性值，并在样式文件中使用该值。这个函数也可以应用于伪类元素，此时它获取的是伪元素所依附的原始元素的属性值。</p>
+<p>下面来看一个简单的例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">attr</span>(data-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，如果有一个 <code>&lt;div&gt;</code> 元素带有 data-color 属性（如 <code>&lt;div data-color=&quot;red&quot;&gt;</code>），那么该元素的背景色将被设置为红色。</p>
+<p>注意，attr() 函数总是返回一个字符串，因此在使用它时需要确保所获取的属性值能够正确地被解析和应用到样式中。此外，不是所有的 CSS 属性都支持 attr() 函数，它通常用于那些可以接受字符串值的属性。</p>
+<h2 id="counter-、counters"><a href="#counter-、counters" class="headerlink" title="counter()、counters()"></a>counter()、counters()</h2><p><code>counter()</code>和<code>counters()</code>函数用于获取和操作计数器的值。CSS 计数器是一种可以存储和递增&#x2F;递减的数字值，通常与列表项、标题、页脚等元素的编号和排序相关。</p>
+<p><code>counter()</code>函数用于获取指定计数器的当前值。它接受一个参数，即计数器的名称。这个函数的返回值是计数器的当前数值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">selector<span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">counter</span>(counter-name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中，selector 是想要添加计数器值的元素的选择器，counter-name 是之前使用 counter-reset 和 counter-increment 定义的计数器的名称。</p>
+<p>counters()函数用于获取多个嵌套计数器的值，并将它们连接成一个字符串。它接受两个或三个参数：计数器名称、分隔符字符串（可选），以及计数器样式（可选）。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">selector<span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">counters</span>(counter-name, separator);</span><br><span class="line">  <span class="comment">/* 或者 */</span></span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">counters</span>(counter-name, separator, style);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>counter-name：计数器的名称。</p>
+</li>
+<li><p>separator：一个字符串，用于分隔不同计数器的值。</p>
+</li>
+<li><p>style：一个可选参数，指定计数器的显示样式，如 decimal（十进制）、upper-roman（大写罗马数字）等。如果省略，将使用默认的十进制样式。</p>
+</li>
+</ul>
+<p>假设有一个嵌套列表，想要显示每个列表项的编号，包括所有嵌套的级别。我们可以使用<code>counters()</code>函数来实现这一点。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 重置计数器 */</span></span><br><span class="line"><span class="selector-tag">ol</span> &#123;</span><br><span class="line">  <span class="attribute">counter-reset</span>: item;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 递增计数器 */</span></span><br><span class="line"><span class="selector-tag">li</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">  <span class="attribute">counter-increment</span>: item;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">counters</span>(item, <span class="string">&quot; &quot;</span>); <span class="comment">/* 使用空格作为分隔符 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，每当遇到一个<code>&lt;li&gt;</code>元素时，item 计数器就会递增。counters(item, “ “)函数会将所有嵌套级别的计数器值连接起来，并使用空格分隔它们。因此，对于一个三级嵌套的列表项，它的内容将类似于“1 2 3”。</p>
+<p>注意，为了使计数器工作，还需要使用 counter-reset 和 counter-increment 属性来初始化和递增计数器。同时，counter()和 counters()函数通常与::before 或::after 伪元素一起使用，以便在元素的内容之前或之后插入计数器的值。</p>
+<h2 id="url"><a href="#url" class="headerlink" title="url()"></a>url()</h2><p><code>url()</code> 函数用于引用或包含外部资源，如图像、字体或其他媒体文件。这个函数通常与各种 CSS 属性一起使用，以指定这些属性所需的资源的位置。</p>
+<p><code>url()</code>函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url( <span class="selector-attr">[ &lt;string&gt; | &lt;uri&gt; ]</span> )</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>&lt;string&gt;</code>或<code>&lt;uri&gt;</code>参数表示资源的 URL。这个 URL 可以是绝对路径（指向完整的互联网地址），也可以是相对路径（相对于当前 CSS 文件或 HTML 文件的位置）。</p>
+<p>以下是一些 url()函数在 CSS 中的使用例子：</p>
+<p>背景图像：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&quot;images/background.jpg&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>字体文件：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@font-face</span> &#123;</span><br><span class="line">  <span class="attribute">font-family</span>: <span class="string">&quot;MyCustomFont&quot;</span>;</span><br><span class="line">  <span class="attribute">src</span>: <span class="built_in">url</span>(<span class="string">&quot;fonts/MyCustomFont.woff2&quot;</span>) <span class="built_in">format</span>(<span class="string">&quot;woff2&quot;</span>), <span class="built_in">url</span>(<span class="string">&quot;fonts/MyCustomFont.woff&quot;</span>)</span><br><span class="line">      <span class="built_in">format</span>(<span class="string">&quot;woff&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>列表样式图像：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">  <span class="attribute">list-style-image</span>: <span class="built_in">url</span>(<span class="string">&quot;images/list-bullet.png&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>光标：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">cursor</span>: <span class="built_in">url</span>(<span class="string">&quot;images/custom-cursor.cur&quot;</span>), auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>边框图像：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">border-image</span>: <span class="built_in">url</span>(<span class="string">&quot;images/border.png&quot;</span>) <span class="number">30%</span> round;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在使用<code>url()</code>函数时，需要注意：</p>
+<ul>
+<li><p>URL 必须被引号包围，可以是单引号或双引号。</p>
+</li>
+<li><p>如果资源位于同一服务器上，可以使用相对路径。如果资源位于不同的服务器或互联网上，需要使用完整的 URL。</p>
+</li>
+<li><p>浏览器会尝试下载并缓存 url()函数中指定的资源，以便在需要时快速访问。</p>
+</li>
+<li><p>如果资源无法加载（例如，由于 404 错误或跨域问题），则相关的 CSS 属性可能不会按预期工作。</p>
+</li>
+</ul>
+<h2 id="var"><a href="#var" class="headerlink" title="var()"></a>var()</h2><p><code>var()</code> 函数用于访问 CSS 自定义属性（CSS 变量）的值。CSS 自定义属性允许定义可在整个文档或特定元素范围内重复使用的值。通过使用 var() 函数，可以在样式表中引用这些值，从而实现更灵活和可维护的样式。</p>
+<p>CSS 变量的声明以两个连字符（–）开头，后面跟着变量名和值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--main-color</span>: blue;</span><br><span class="line">  <span class="attr">--secondary-color</span>: <span class="number">#333</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，在 :root 选择器中定义了两个变量 –main-color 和 –secondary-color。:root 选择器指向文档的根元素，这意味着这些变量在整个文档中都是可用的。</p>
+<p>然后，可以使用 var() 函数来引用这些变量的值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--main-color);</span><br><span class="line">  <span class="attribute">color</span>: <span class="built_in">var</span>(--secondary-color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>var(--main-color)</code> 会被替换为 <code>blue</code>，<code>var(--secondary-color)</code> 会被替换为 <code>#333</code>。</p>
+<p>var() 函数也可以接受一个可选的第二个参数，作为变量未定义时的回退值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">var</span>(--unknown-variable, red);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 –unknown-variable 没有被定义，background-color 将会设置为 red。</p>
+<p>CSS 变量非常有用，因为它们允许：</p>
+<ul>
+<li><p>在一个地方定义颜色、尺寸、字体等，然后在整个样式表中重复使用。</p>
+</li>
+<li><p>动态地改变样式，通过 JavaScript 更改变量的值。</p>
+</li>
+<li><p>实现更高级的样式逻辑和主题切换。</p>
+</li>
+</ul>
+<p>注意，CSS 变量的作用域是它们被定义的位置。如果在元素的选择器中定义了变量，那么该变量只会在那个元素及其子元素中可用。如果在 <code>:root</code> 或其他更高级别的选择器（如 html）中定义了变量，那么它们将在整个文档中可用。</p>
+<h2 id="element"><a href="#element" class="headerlink" title="element()"></a>element()</h2><p><code>element()</code> 函数是 CSS3 中引入的一个背景函数，它能够将网站上的某部分元素作为背景图像来使用。换句话说，它可以将指定的 HTML 元素渲染为 CSS 背景图像。</p>
+<p>element() 函数的基本语法是 element(id)，其中 id 是必需参数，表示要作为背景图像使用的元素的 ID。</p>
+<p>假设有一个带有 ID myElement 的元素，可以这样使用 element() 函数：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#someOtherElement</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">element</span>(#myElement);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>#someOtherElement</code> 的背景图像会被设置为 <code>#myElement</code> 的内容。</p>
+<h2 id="image-set"><a href="#image-set" class="headerlink" title="image-set()"></a>image-set()</h2><p>image-set() 函数允许为不同的设备像素比提供不同的图像资源，从而确保图像在各种设备上都能以适当的分辨率显示。这对于响应式设计和确保图像在不同设备上的清晰度非常有用。</p>
+<p>image-set()的基本语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">image-set(</span><br><span class="line"> &lt;image-candidate&gt; <span class="selector-attr">[&lt;resolution&gt; [, &lt;image-candidate&gt; [&lt;resolution&gt;]</span>]*</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>&lt;image-candidate&gt;</code>是图像的 URL，<code>&lt;resolution&gt;</code>是该图像适用的设备像素比。可以指定多个图像候选项，每个都带有其适用的分辨率。浏览器将选择最适合当前设备像素比的图像。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.img-responsive</span> &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">image-set</span>(</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;image-320w.jpg&quot;</span>) <span class="number">1</span>x,</span><br><span class="line">    <span class="built_in">url</span>(<span class="string">&quot;image-640w.jpg&quot;</span>) <span class="number">2</span>x</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，如果设备像素比为 1（标准的非高清设备），浏览器将使用 image-320w.jpg。如果设备像素比为 2（如 Retina 屏幕），浏览器将使用 image-640w.jpg，这是一个更高分辨率的图像，可以确保在高清设备上显示的清晰度。</p>
+<p>虽然 image-set()主要用于背景图像，但也可以用于<code>&lt;img&gt;</code>标签的 srcset 属性，以实现类似的功能，并允许更复杂的图像选择逻辑，包括基于视口宽度和像素密度的选择。</p>
+<h1 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h1><h2 id="rgb-、rgba"><a href="#rgb-、rgba" class="headerlink" title="rgb()、rgba()"></a>rgb()、rgba()</h2><p><code>rgb()</code> 和 <code>rgba()</code> 是 CSS 中用于定义颜色的函数。</p>
+<p><code>rgb()</code> 函数用于定义一个颜色，它由三个参数组成：红色（R）、绿色（G）和蓝色（B）。每个参数的值范围都是 0 到 255，代表颜色的强度。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>); <span class="comment">/* 红色 */</span></span><br><span class="line"><span class="attribute">background-color</span>: <span class="built_in">rgb</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>); <span class="comment">/* 绿色 */</span></span><br></pre></td></tr></table></figure>
+
+<p>rgba() 函数与 rgb() 类似，但它多了一个参数：透明度（Alpha）。Alpha 参数的范围是 0 到 1，其中 0 表示完全透明，1 表示完全不透明。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>); <span class="comment">/* 半透明的红色 */</span></span><br><span class="line"><span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>, <span class="number">0.3</span>); <span class="comment">/* 30% 不透明的绿色 */</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 rgba() 可以实现带有透明度的颜色效果，这在设计需要渐变、阴影或其他视觉效果时非常有用。</p>
+<h2 id="hsl-、hsla"><a href="#hsl-、hsla" class="headerlink" title="hsl()、hsla()"></a>hsl()、hsla()</h2><p><code>hsl()</code> 和 <code>hsla()</code> 是 CSS 中另外两个用于定义颜色的函数，它们基于色相、饱和度、亮度模型，并可选地包含透明度（Alpha）信息。</p>
+<p>hsl() 函数通过三个参数定义颜色：色相（Hue）、饱和度（Saturation）和亮度（Lightness）。</p>
+<ul>
+<li><p>色相（Hue）：表示颜色的基本属性，取值范围是 0 到 360 度，代表色轮上的角度。</p>
+</li>
+<li><p>饱和度（Saturation）：表示颜色的纯度，取值范围是 0% 到 100%，其中 0% 表示灰色，100% 表示完全饱和。</p>
+</li>
+<li><p>亮度（Lightness）：表示颜色的明亮程度，取值范围也是 0% 到 100%，其中 0% 表示黑色，100% 表示白色。</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">hsl</span>(<span class="number">0</span>, <span class="number">100%</span>, <span class="number">50%</span>); <span class="comment">/* 红色 */</span></span><br><span class="line"><span class="attribute">background-color</span>: <span class="built_in">hsl</span>(<span class="number">120</span>, <span class="number">100%</span>, <span class="number">25%</span>); <span class="comment">/* 深绿色 */</span></span><br></pre></td></tr></table></figure>
+
+<p>hsla() 函数与 hsl() 类似，但它多了一个参数：透明度（Alpha）。Alpha 参数的范围是 0 到 1，其中 0 表示完全透明，1 表示完全不透明。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">hsla</span>(<span class="number">0</span>, <span class="number">100%</span>, <span class="number">50%</span>, <span class="number">0.5</span>); <span class="comment">/* 半透明的红色 */</span></span><br><span class="line"><span class="attribute">background-color</span>: <span class="built_in">hsla</span>(<span class="number">120</span>, <span class="number">100%</span>, <span class="number">25%</span>, <span class="number">0.7</span>); <span class="comment">/* 70% 不透明的深绿色 */</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 hsla() 可以实现带有透明度的 HSL 颜色效果，这在需要创建复杂的视觉效果或渐变时特别有用。</p>
+<h2 id="hwb"><a href="#hwb" class="headerlink" title="hwb()"></a>hwb()</h2><p>HWB() 是一个颜色函数，它基于 HWB（Hue, Whiteness, Blackness）颜色模型来定义颜色。HWB 模型是 RGB 模型的一个变种，它使用色调（Hue）、白度（Whiteness）和黑度（Blackness）三个参数来定义颜色。</p>
+<ul>
+<li><p>色调（Hue）：与 HSL 和 HSV 模型中的色调相同，表示颜色的基本属性，取值范围是 0 到 360 度。</p>
+</li>
+<li><p>白度（Whiteness）：表示颜色中白色的成分，取值范围是 0% 到 100%。增加白度会使颜色变得更亮。</p>
+</li>
+<li><p>黑度（Blackness）：表示颜色中黑色的成分，取值范围也是 0% 到 100%。增加黑度会使颜色变得更暗。</p>
+</li>
+</ul>
+<p>HWB 颜色模型的一个优点是它更符合人类的直观认知，因为可以直接通过调整白度和黑度来控制颜色的亮度和暗度，而不需要像在 RGB 模型中那样同时调整三个分量。</p>
+<p>例如，<code>hwb(0, 0%, 30%)</code> 表示红色的色调，没有加入白色成分，但加入了 30% 的黑色成分，因此最终的颜色是偏深一点的红色。</p>
+<p><code>hwb()</code> 函数在 CSS 中的使用类似于其他颜色函数：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">hwb</span>(<span class="number">0</span>, <span class="number">0%</span>, <span class="number">30%</span>); <span class="comment">/* 偏深一点的红色 */</span></span><br><span class="line"><span class="attribute">background-color</span>: <span class="built_in">hwb</span>(<span class="number">120</span>, <span class="number">50%</span>, <span class="number">10%</span>); <span class="comment">/* 一种绿色调，带有一定的白色和黑色成分 */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="lab"><a href="#lab" class="headerlink" title="lab()"></a>lab()</h2><p><code>lab()</code> 是一个基于 CIELAB 色彩空间的颜色函数。CIELAB 是一种颜色空间，旨在更贴近人眼对颜色的感知。LAB 色彩空间由三个分量组成：L（亮度）、a（从绿色到红色的分量）、b（从蓝色到黄色的分量）。</p>
+<ul>
+<li><p>L（亮度）：表示颜色的亮度，取值范围是 0% 到 100%。0% 代表黑色，100% 代表白色。</p>
+</li>
+<li><p>a：表示颜色在绿色和红色之间的位置。正值表示偏向红色，负值表示偏向绿色。</p>
+</li>
+<li><p>b：表示颜色在蓝色和黄色之间的位置。正值表示偏向黄色，负值表示偏向蓝色。</p>
+</li>
+</ul>
+<p><code>lab()</code> 函数在 CSS 中的使用如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">lab</span>(<span class="number">50%</span> -<span class="number">10</span> <span class="number">20</span>); <span class="comment">/* 一个具体的 LAB 颜色值 */</span></span><br><span class="line"><span class="attribute">background-color</span>: <span class="built_in">lab</span>(<span class="number">90%</span> <span class="number">0</span> <span class="number">0</span>); <span class="comment">/* 高亮度、无 a 和 b 分量的颜色 */</span></span><br></pre></td></tr></table></figure>
+
+<p>与 RGB、HSL 等色彩空间相比，LAB 色彩空间更接近人眼对颜色的视觉感知，因此在某些情况下，使用 LAB 可能会更准确地匹配颜色。然而，lab() 函数在 CSS 中的支持度相对较低，可能不是所有浏览器都支持这个函数。</p>
+<h2 id="lch"><a href="#lch" class="headerlink" title="lch()"></a>lch()</h2><p><code>lch()</code> 是一个基于 CIELCH 色彩空间的颜色函数。CIELCH 色彩空间是 CIELAB 色彩空间的扩展，其中 L 表示亮度，C 表示色度（即色彩的饱和度），H 表示色调（色相）。LCH 色彩空间提供了与 CIELAB 类似的颜色表示，但使用色度（Chroma）代替 a 和 b 分量，这通常更直观且易于理解。</p>
+<ul>
+<li><p>L（亮度）：表示颜色的亮度，取值范围是 0% 到 100%。0% 代表黑色，100% 代表白色。</p>
+</li>
+<li><p>C（色度）：表示颜色的饱和度，即色彩的鲜艳程度。C 的值越大，颜色越鲜艳；C 的值越小，颜色越接近灰度。</p>
+</li>
+<li><p>H（色调）：表示颜色的色相，即色彩在色轮上的角度。H 的取值范围是 0 到 360 度，其中 0 度代表红色，120 度代表绿色，240 度代表蓝色等。</p>
+</li>
+</ul>
+<p>lch() 函数在 CSS 中的使用如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">lch</span>(<span class="number">50%</span> <span class="number">60</span> <span class="number">120deg</span>); <span class="comment">/* 一个具体的 LCH 颜色值 */</span></span><br><span class="line"><span class="attribute">background-color</span>: <span class="built_in">lch</span>(<span class="number">90%</span> <span class="number">0</span> <span class="number">0deg</span>); <span class="comment">/* 高亮度、无色度（即灰色）的颜色 */</span></span><br></pre></td></tr></table></figure>
+
+<p>lch() 函数提供了在 CSS 中定义颜色的另一种方式，特别是对于那些需要直接控制亮度和色度而不是红、绿、蓝分量的场景。</p>
+<h2 id="device-cmyk"><a href="#device-cmyk" class="headerlink" title="device-cmyk()"></a>device-cmyk()</h2><p><code>device-cmyk()</code> 用于表示印刷四分色模式（CMYK）的颜色。CMYK 是由青色（Cyan）、品红色（Magenta）、黄色（Yellow）和黑色（Black）四种颜色混合而成的减色混色模型。与 RGB 的加色混色模型不同，CMYK 中颜色混合时，亮度会降低。</p>
+<p>在 <code>device-cmyk()</code> 函数中，每个颜色分量的取值范围都是 0 到 1，或者可以表示为百分比形式，从 0% 到 100%。这四个参数分别对应 C（青色）、M（品红色）、Y（黄色）和 K（黑色）。</p>
+<p>例如，如果想表示一个由 50% 青色、75% 品红色、25% 黄色和 10% 黑色组成的颜色，可以这样写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">device-cmyk</span>(<span class="number">0.5</span>, <span class="number">0.75</span>, <span class="number">0.25</span>, <span class="number">0.1</span>);</span><br><span class="line">// 或者</span><br><span class="line"><span class="attribute">color</span>: <span class="built_in">device-cmyk</span>(<span class="number">50%</span>, <span class="number">75%</span>, <span class="number">25%</span>, <span class="number">10%</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="color-mix"><a href="#color-mix" class="headerlink" title="color-mix()"></a>color-mix()</h2><p><code>color-mix()</code> 是 CSS Color Module Level 5 提案中引入的一个实验性功能，用于混合两种颜色。该函数允许指定颜色空间（如 srgb、lch、lab 等）以及每种颜色混合的比例。**color-mix() 的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>-mix(in `&lt;<span class="attribute">color</span>-space&gt;`, `&lt;<span class="attribute">color</span>-percentage&gt;`, `&lt;<span class="attribute">color</span>&gt;`);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>&lt;color-space&gt;</code>：指定颜色空间，如 srgb、lch、lab 等。</p>
+</li>
+<li><p><code>&lt;color-percentage&gt;</code>：指定第一种颜色的混合比例，范围通常是 0% 到 100%。</p>
+</li>
+<li><p><code>&lt;color&gt;</code>：指定第二种颜色。</p>
+</li>
+</ul>
+<p>例如，如果想要混合红色（red）和蓝色（blue），并且红色占 70%，蓝色占 30%，可以这样写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="built_in">color-mix</span>(in srgb, <span class="number">70%</span>, blue);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这将会产生一个偏向于红色的混合色。</p>
+<p>oklab()<br>oklab() 是 CSS Color Module Level 4 中引入的一个实验性颜色函数，用于在 OKLab 色彩空间中定义颜色。OKLab 是一种颜色空间，旨在提供一个更均匀的颜色感知空间，同时保持与 CIELAB 相似的简单性和计算效率。</p>
+<p>在 oklab() 函数中，颜色由三个分量表示：L（亮度）、O（橙色分量）和 K（黄色分量）。这些分量的取值范围通常是 0 到 1，或者可以转换为百分比形式。</p>
+<h2 id="oklab-函数的语法如下："><a href="#oklab-函数的语法如下：" class="headerlink" title="oklab() 函数的语法如下："></a>oklab() 函数的语法如下：</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oklab(`&lt;number&gt;` `&lt;number&gt;` `&lt;number&gt;`)</span><br></pre></td></tr></table></figure>
+
+<p>其中，每个 <code>&lt;number&gt;</code> 分别代表 L、O 和 K 的值。</p>
+<p>例如，要定义一个 OKLab 颜色值，可以这样：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">color</span>: <span class="built_in">oklab</span>(<span class="number">0.5</span> <span class="number">0.3</span> <span class="number">0.2</span>);</span><br></pre></td></tr></table></figure>
+
+<h1 id="滤镜"><a href="#滤镜" class="headerlink" title="滤镜"></a>滤镜</h1><h2 id="blur"><a href="#blur" class="headerlink" title="blur()"></a>blur()</h2><p><code>blur()</code> 用于给图像或元素添加模糊效果。它属于 CSS 滤镜功能的一部分，可以在不影响布局的情况下应用各种视觉效果。</p>
+<p><code>blur()</code> 函数的语法很简单，它接受一个长度值作为参数，这个值表示模糊的程度。这个长度值可以是像素（px）、百分比（%）或者是 rem 单位。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.blurred-element</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">5px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，.blurred-element 类选择器应用于一个 HTML 元素，blur(5px) 表示这个元素将应用 5 像素的模糊效果。</p>
+<p>注意，blur() 滤镜效果在性能上可能有一定的开销，特别是在移动设备上或当应用于大型图像或元素时。因此，在使用时应谨慎考虑其对页面性能的影响，并尽量避免在不必要的场合使用。</p>
+<p>另外，由于 CSS 滤镜在一些较旧的浏览器中可能不受支持，因此在使用 blur() 函数时，可能需要添加浏览器前缀（如 -webkit-）以确保兼容性，并检查目标浏览器的支持情况。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.blurred-element</span> &#123;</span><br><span class="line">  -webkit-<span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">5px</span>); <span class="comment">/* Chrome, Safari, Opera */</span></span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">5px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后，blur() 函数可以与其他 CSS 滤镜函数结合使用，以创建更复杂的效果，如亮度（brightness()）、对比度（contrast()）和灰度（grayscale()）等。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.complex-effect</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">5px</span>) <span class="built_in">brightness</span>(<span class="number">50%</span>) <span class="built_in">contrast</span>(<span class="number">200%</span>) <span class="built_in">grayscale</span>(<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>complex-effect</code> 类将同时应用模糊、亮度、对比度和灰度滤镜效果。</p>
+<h2 id="brightness"><a href="#brightness" class="headerlink" title="brightness()"></a>brightness()</h2><p><code>brightness()</code> 是一个滤镜函数，用于调整图像或元素的亮度。这个函数允许增加或减少图像或元素的整体亮度，使其看起来更亮或更暗。</p>
+<p><code>brightness()</code> 函数接受一个介于 0 和 1 之间的数字作为参数。这个数字表示相对于原始亮度的乘数因子。例如，如果参数是 0.5，那么亮度将降低到原始亮度的一半；如果参数是 1，那么亮度将保持不变；如果参数是 2，那么亮度将增加到原始亮度的两倍。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">brightness</span>(<span class="number">0.7</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有<code>&lt;img&gt;</code>元素的亮度被降低到原始亮度的 70%。</p>
+<p>注意，<code>brightness()</code> 函数的效果是线性的，这意味着它不会考虑图像中颜色的感知亮度。因此，在某些情况下，增加或减少亮度可能会导致颜色看起来不自然。</p>
+<h2 id="contrast"><a href="#contrast" class="headerlink" title="contrast()"></a>contrast()</h2><p>contrast() 是一个滤镜函数，用于调整图像或元素的对比度。对比度是指图像中最亮和最暗部分之间的差异程度。通过增加或减少对比度，可以改变图像的色彩鲜明度和清晰度。</p>
+<p>contrast() 函数接受一个数值作为参数，这个数值表示对比度的调整量。这个数值通常大于 0，其中 1 表示原始对比度（即不进行任何调整）。数值小于 1 会减少对比度，使图像看起来更加柔和或褪色；数值大于 1 会增加对比度，使图像看起来更加鲜明和清晰。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">contrast</span>(<span class="number">1.5</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有<code>&lt;img&gt;</code>元素的对比度被增加到原始对比度的 1.5 倍，这通常会使图像看起来更加鲜明。</p>
+<p>注意，contrast()函数的效果取决于图像本身的色彩和亮度分布。在某些情况下，增加对比度可能会导致图像细节丢失或色彩失真。因此，在使用 contrast()函数时，应该谨慎调整参数值，以达到最佳效果。</p>
+<h2 id="saturate"><a href="#saturate" class="headerlink" title="saturate()"></a>saturate()</h2><p><code>saturate()</code> 是一个滤镜函数，用于调整图像或颜色的饱和度。饱和度是指颜色的强度和纯度，即颜色中包含的灰色成分的多少。saturate() 函数允许增加或减少颜色的饱和度，从而使颜色更加鲜艳或更加暗淡。</p>
+<p><code>saturate()</code> 函数接受一个数值作为参数，这个数值表示饱和度的调整量。这个数值通常大于 0，其中 1 表示不进行任何调整，保持原始饱和度。数值小于 1 会减少饱和度，使颜色看起来更加不饱和或灰色；数值大于 1 会增加饱和度，使颜色看起来更加鲜艳。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">saturate</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有 <code>&lt;div&gt;</code> 元素的颜色饱和度被增加到原始饱和度的 2 倍，这通常会使颜色看起来更加鲜艳。</p>
+<p>注意，<code>saturate()</code> 函数的效果取决于原始颜色的饱和度。对于已经接近完全饱和的颜色，增加饱和度可能不会有显著的效果。同时，过度增加饱和度可能会导致颜色看起来过于鲜艳或不自然。</p>
+<h2 id="sepia"><a href="#sepia" class="headerlink" title="sepia()"></a>sepia()</h2><p>sepia()是一个滤镜函数，用于将图像或元素的颜色转换为棕褐色（或称为“褐色”）效果，模仿老照片或复古风格。这个函数接受一个参数，通常是一个百分比值，用于指定转换的强度。</p>
+<p>sepia()函数的参数范围是 0% 到 100%。当参数为 0% 时，图像或元素保持原样，不进行任何棕褐色转换。随着参数值的增加，图像或元素的颜色逐渐变为棕褐色，直到参数值达到 100% 时，完全转换为棕褐色。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">sepia</span>(<span class="number">75%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有<code>&lt;img&gt;</code>元素的颜色被转换为 75% 的棕褐色效果。</p>
+<p>sepia()函数的效果是在不改变图像亮度或对比度的情况下，调整颜色的色调和饱和度，使其呈现出棕褐色的外观。这种效果在网页设计中常用于营造复古或怀旧的感觉。</p>
+<h2 id="invert"><a href="#invert" class="headerlink" title="invert()"></a>invert()</h2><p><code>invert()</code> 是一个滤镜函数，用于反转图像或元素的颜色。具体来说，它会将图像或元素中的每个颜色值取反，从而得到相应的反色。在数字图像处理中，这个操作也被称为“取反”或“负片”效果。</p>
+<p>使用 <code>invert()</code> 函数时，不需要指定任何参数，因为它会自动计算颜色值的反色。当应用 <code>invert()</code> 滤镜到一个元素上时，该元素中的所有颜色都会被反转。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">invert</span>(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有 <code>&lt;img&gt;</code> 元素的颜色被反转。注意，invert() 函数的效果取决于图像或元素的原始颜色。对于彩色图像，invert() 会将每种颜色分量（红色、绿色和蓝色）取反，从而得到反色图像。</p>
+<h2 id="grayscale"><a href="#grayscale" class="headerlink" title="grayscale()"></a>grayscale()</h2><p><code>grayscale()</code> 是一个滤镜函数，用于将图像或元素转换为灰度图像。这个函数接受一个参数，通常是一个百分比值，用于指定转换的强度。</p>
+<p><code>grayscale()</code>函数的参数范围是 0% 到 100%。当参数为 0% 时，图像或元素保持原样，不进行任何灰度转换。随着参数值的增加，图像或元素的颜色逐渐变为灰度，直到参数值达到 100% 时，完全转换为黑白灰度图像。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">grayscale</span>(<span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有<code>&lt;img&gt;</code>元素的颜色被转换为 50% 的灰度效果，即半灰度半彩色。</p>
+<p>grayscale()函数的效果是通过减少图像中每个颜色分量的饱和度来实现的，从而得到灰度图像。这种效果在网页设计中常用于创建简约、低调或复古风格的视觉效果。</p>
+<h2 id="drop-shadow"><a href="#drop-shadow" class="headerlink" title="drop-shadow()"></a>drop-shadow()</h2><p>drop-shadow() 是一个滤镜函数，用于给图像或元素添加阴影效果。它可以接受多个参数来定义阴影的偏移量、模糊半径、扩展半径和颜色。</p>
+<p>drop-shadow() 函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop-shadow(offset-x offset-y blur-radius spread-radius <span class="attribute">color</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>offset-x: 阴影的水平偏移量。正值会向右偏移，负值会向左偏移。</p>
+</li>
+<li><p>offset-y: 阴影的垂直偏移量。正值会向下偏移，负值会向上偏移。</p>
+</li>
+<li><p>blur-radius: 阴影的模糊半径。这个参数是可选的，如果不指定，阴影将不会有模糊效果。</p>
+</li>
+<li><p>spread-radius: 阴影的扩展半径。这个参数也是可选的，它定义了阴影的大小。正值会增加阴影的大小，负值会缩小阴影。</p>
+</li>
+<li><p>color: 阴影的颜色。</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">drop-shadow</span>(<span class="number">2px</span> <span class="number">2px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有 <code>&lt;div&gt;</code> 元素将会有一个向右下方偏移 2px，模糊半径为 4px，颜色为半透明黑色的阴影。</p>
+<p>注意，drop-shadow() 函数与 box-shadow 属性有些相似，但它们在表现和行为上有一些差异。box-shadow 是在元素的边框外添加阴影，而 drop-shadow() 则是通过滤镜在图像或元素上直接创建阴影效果。</p>
+<h2 id="hue-rotate"><a href="#hue-rotate" class="headerlink" title="hue-rotate()"></a>hue-rotate()</h2><p>hue-rotate() 是一个滤镜函数，用于调整图像或元素的色调。它接受一个角度值作为参数，该角度值表示色调旋转的角度。正值会增加色调，而负值会减少色调。</p>
+<p>hue-rotate()函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hue-rotate(angle)</span><br></pre></td></tr></table></figure>
+
+<p>其中 angle 是一个表示旋转角度的值，可以是正数或负数。角度值是以度（deg）为单位的，但不需要指定单位，因为 CSS 会自动解析它。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">hue-rotate</span>(<span class="number">90deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，所有<code>&lt;img&gt;</code>元素的色调将被旋转 90 度。这意味着图像中的颜色将按照色相环的方向旋转 90 度，从而实现色调的调整。</p>
+<h1 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h1><h2 id="linear-gradient-、repeating-linear-gradient"><a href="#linear-gradient-、repeating-linear-gradient" class="headerlink" title="linear-gradient()、repeating-linear-gradient()"></a>linear-gradient()、repeating-linear-gradient()</h2><p><code>linear-gradient()</code>和 <code>repeating-linear-gradient()</code> 用于创建线性渐变效果。它们都可以用来在两个或多个颜色之间创建平滑的过渡。</p>
+<p><code>linear-gradient()</code>函数用于生成线性渐变背景。它接受至少两种颜色作为参数，并且可以根据需要接受更多的参数来定义渐变的方向、颜色停止点等。其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">linear-gradient(angle | <span class="selector-tag">to</span> <span class="attribute">direction</span>, <span class="attribute">color</span>-stop1, <span class="attribute">color</span>-stop2, ...);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>angle：定义渐变线的角度。</p>
+</li>
+<li><p>to direction：使用关键词定义渐变的方向（如 to top, to right 等）。</p>
+</li>
+<li><p>color-stop：定义渐变中的颜色停止点。</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, red, yellow);</span><br></pre></td></tr></table></figure>
+
+<p>这将创建一个从左到右的红色到黄色的线性渐变背景。</p>
+<p>repeating-linear-gradient()函数与 linear-gradient() 类似，但是它创建的渐变会无限地重复。这意味着渐变模式会在容器内重复填充，直到填满整个容器。参数与 linear-gradient() 相同，但效果是重复的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">repeating-linear-gradient</span>(to right, red, yellow <span class="number">10px</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这将创建一个从左到右的重复线性渐变，其中红色和黄色之间的过渡每 10 像素重复一次。</p>
+<h2 id="radial-gradient-、repeating-radial-gradient"><a href="#radial-gradient-、repeating-radial-gradient" class="headerlink" title="radial-gradient()、repeating-radial-gradient()"></a>radial-gradient()、repeating-radial-gradient()</h2><p><code>radial-gradient()</code> 和 <code>repeating-radial-gradient()</code> 用于创建径向渐变（也称为圆形渐变或镜像渐变）效果。这些渐变从一个中心点开始，向外扩散或重复。</p>
+<p><code>radial-gradient()</code> 函数用于生成径向渐变背景。它至少需要两种颜色作为参数，并可以指定渐变的中心、形状（圆形或椭圆形）以及大小。其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">radial-gradient(shape size at <span class="attribute">position</span>, <span class="attribute">color</span>-stop1, <span class="attribute">color</span>-stop2, ...);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>shape：可以是 circle（圆形）或 ellipse（椭圆形）。</p>
+</li>
+<li><p>size：定义渐变的大小，如 closest-side, farthest-side, closest-corner, farthest-corner，或者使用具体的长度值。</p>
+</li>
+<li><p>at position：定义渐变中心的位置。</p>
+</li>
+<li><p>color-stop：定义渐变中的颜色停止点。</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">radial-gradient</span>(circle, red, yellow);</span><br></pre></td></tr></table></figure>
+
+<p>这将创建一个从中心开始的红色到黄色的圆形径向渐变背景。</p>
+<p><code>repeating-radial-gradient()</code> 函数与 <code>radial-gradient()</code> 类似，但它创建的渐变会无限地重复。这意味着渐变模式会在容器内重复填充，直到填满整个容器。其语法与 radial-gradient() 相同，但效果是重复的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">repeating-radial-gradient</span>(circle, red, yellow <span class="number">10%</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这将创建一个从中心开始的重复径向渐变，其中红色和黄色之间的过渡每 10%的径向距离重复一次。</p>
+<h2 id="conic-gradient-、repeating-conical-gradient"><a href="#conic-gradient-、repeating-conical-gradient" class="headerlink" title="conic-gradient()、repeating-conical-gradient()"></a>conic-gradient()、repeating-conical-gradient()</h2><p><code>conic-gradient()</code> 和 <code>repeating-conic-gradient()</code> 用于创建锥形渐变和重复的锥形渐变效果。这些渐变从一个中心点开始，沿着辐射状的线条向外扩散。</p>
+<p>conic-gradient() 函数用于生成锥形渐变背景。它接受多个颜色停止点作为参数，每个颜色停止点由一个颜色值和一个可选的角度（或百分比）组成，表示渐变中颜色变化的位置。其语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conic-gradient(<span class="attribute">color</span>-stop1 angle1, <span class="attribute">color</span>-stop2 angle2, ...);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>color-stop：定义渐变中的颜色停止点。</p>
+</li>
+<li><p>angle：定义颜色停止点的位置，可以是度数（0 到 360 之间）或百分比（0%到 100%之间）。</p>
+</li>
+</ul>
+<p>background: conic-gradient(red 0%, yellow 100%);<br>这将创建一个从红色渐变到黄色的锥形渐变背景，其中红色位于渐变的起点（0 度或 0%），黄色位于渐变的终点（360 度或 100%）。</p>
+<p>repeating-conic-gradient() 函数与 conic-gradient() 类似，但是它创建的渐变会无限地重复。这意味着锥形渐变模式会在容器内重复填充，直到填满整个容器。语法与 conic-gradient() 类似，但渐变会重复。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background</span>: <span class="built_in">repeating-conic-gradient</span>(red <span class="number">0%</span> <span class="number">25%</span>, yellow <span class="number">25%</span> <span class="number">50%</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这将创建一个重复的锥形渐变，其中红色和黄色之间的过渡从 0%到 25%，然后从 25%到 50%重复这个过渡。</p>
+<h1 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h1><h2 id="calc"><a href="#calc" class="headerlink" title="calc()"></a>calc()</h2><p>calc() 用于在 CSS 表达式中进行计算的功能，允许在 CSS 的属性值中使用基本的数学运算。</p>
+<p><code>calc()</code> 函数的主要用途是动态计算长度值。这意味着可以使用加、减、乘、除等运算符来组合不同的单位，并得出一个结果作为 CSS 属性的值。这在需要根据其他属性值或视口大小（如 vw、vh、vmin、vmax 等）动态调整元素尺寸时特别有用。</p>
+<p>例如，如果想设置一个元素的宽度为其父元素宽度的一半减去 50px，可以这样写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="number">50%</span> - <span class="number">50px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>calc()</code> 函数也可以和其他 CSS 函数一起使用，例如 min(), max() 和 clamp()。这些函数允许设置一个值的范围或限制，calc() 可以在这个范围内进行计算。</p>
+<p>例如，使用 min()和 max() 来确保元素的高度始终在 100px 和 200px 之间：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="built_in">calc</span>(<span class="built_in">min</span>(<span class="built_in">max</span>(<span class="number">100px</span>, <span class="number">20vw</span>), <span class="number">200px</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，20vw 会根据视口的宽度变化，但使用 min() 和 max() 函数可以确保计算出来的高度值始终在 100px 和 200px 之间。</p>
+<p>注意，calc() 函数中的运算符两边必须有空格，否则它将不会被正确解析。例如，calc(50% - 50px) 是正确的，而 calc(50%-50px) 则是错误的。</p>
+<h2 id="min-、max"><a href="#min-、max" class="headerlink" title="min()、max()"></a>min()、max()</h2><p>min() 和 max() 函数用于限制一个值的最小和最大值。它们通常与 calc() 函数结合使用，以确保计算出的结果落在指定的范围内。</p>
+<p>min() 函数接受两个或更多参数，并返回其中的最小值。如果参数是数值，它会返回最小的数值；如果参数是长度值，它会返回最短的长度。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="built_in">calc</span>(<span class="built_in">min</span>(<span class="number">50%</span>, <span class="number">300px</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，元素的宽度将被设置为 50% 和 300px 中的较小值。如果容器的宽度小于 600px，元素的宽度将是容器宽度的一半；如果容器的宽度大于或等于 600px，元素的宽度将是 300px。</p>
+<p>max() 函数与 min() 函数类似，但它返回的是参数中的最大值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="built_in">calc</span>(<span class="built_in">max</span>(<span class="number">100px</span>, <span class="number">10vh</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，元素的高度将被设置为 100px 和 10% 视口高度中的较大值。如果视口的高度小于 1000px，元素的高度将是 100px；如果视口的高度大于或等于 1000px，元素的高度将是视口高度的 10%。</p>
+<p>注意，min() 和 max() 函数接受的参数类型必须一致（即都是数值或都是长度值），否则它们将无法正确工作。此外，min() 和 max() 函数也可以用在其他接受数值或长度值作为参数的 CSS 属性中，不仅仅是 width、height、font-size 等属性。</p>
+<h2 id="clamp"><a href="#clamp" class="headerlink" title="clamp()"></a>clamp()</h2><p>clamp() 用于将一个值限制在一个特定的范围内。这个函数接受三个参数：最小值（MIN）、首选值（VAL）和最大值（MAX）。</p>
+<ul>
+<li><p>如果首选值（VAL）在最小值（MIN）和最大值（MAX）之间，那么 clamp() 函数将返回首选值。</p>
+</li>
+<li><p>如果首选值（VAL）小于最小值（MIN），那么函数将返回最小值。</p>
+</li>
+<li><p>如果首选值（VAL）大于最大值（MAX），那么函数将返回最大值。</p>
+</li>
+</ul>
+<p>这个函数的语法是 clamp(MIN, VAL, MAX)。它特别有用在需要根据不同条件动态调整 CSS 属性的值，同时确保这个值始终在一个可接受的范围内。</p>
+<p>例如，假设有一个元素的字体大小需要根据视口宽度进行调整，但希望字体大小始终在 12px 和 24px 之间。可以这样使用 clamp() 函数：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="built_in">clamp</span>(<span class="number">12px</span>, <span class="number">2vw</span>, <span class="number">24px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，2vw 是首选值，它根据视口的宽度变化。如果视口宽度很小，导致 2vw 计算出来的值小于 12px，clamp() 函数将返回 12px。如果视口宽度很大，导致 2vw 计算出来的值大于 24px，clamp() 函数将返回 24px。如果 2vw 计算出来的值在 12px 和 24px 之间，那么 clamp() 函数将直接返回这个计算值。</p>
+<p>这个函数为响应式设计和动态布局提供了很大的灵活性，因为它允许开发者定义一个值的范围，而不是固定一个具体的值。</p>
+<h1 id="图形"><a href="#图形" class="headerlink" title="图形"></a>图形</h1><h2 id="circle"><a href="#circle" class="headerlink" title="circle()"></a>circle()</h2><p><code>circle()</code> 函数用于定义一个圆形区域，并可以用于多种 CSS 属性中，如 shape-outside 或 clip-path。这个函数允许指定一个圆形的半径和位置，以创建特定的布局或剪裁效果。</p>
+<p>在<code>shape-outside</code>属性中，<code>circle()</code>函数定义了一个围绕元素内容的圆形路径，使得文本或其他内容可以环绕在这个圆形的外部流动。这对于创建独特的文本布局和视觉效果非常有用。</p>
+<p>在<code>clip-path</code>属性中，<code>circle()</code>函数则用于剪裁元素的内容，只显示圆形区域内的部分。这可以用于创建圆形头像、圆形图标等效果。</p>
+<p>circle()函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">circle( <span class="selector-attr">[ &lt;length&gt; | &lt;percentage&gt; ]</span>? <span class="selector-attr">[ at &lt;position&gt; ]</span>? )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>&lt;length&gt;</code>或<code>&lt;percentage&gt;</code>参数定义了圆形的半径。如果省略，浏览器会提供一个默认值。</p>
+</li>
+<li><p>at <code>&lt;position&gt;</code>参数是可选的，用于指定圆形的位置。如果省略，圆形将居中于元素。</p>
+</li>
+</ul>
+<p>例如，可以使用以下代码来创建一个半径为 100px，位置在(50px, 50px)的圆形：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">shape-outside</span>: <span class="built_in">circle</span>(<span class="number">100px</span> at <span class="number">50px</span> <span class="number">50px</span>);</span><br></pre></td></tr></table></figure>
+
+<p>或者，如果想要创建一个半径为 50%的圆形，使其始终与元素的大小相匹配，可以这样写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">circle</span>(<span class="number">50%</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="ellipse"><a href="#ellipse" class="headerlink" title="ellipse()"></a>ellipse()</h2><p><code>ellipse()</code> 函数用于定义一个椭圆形区域。与 circle()函数类似，ellipse()函数也可以用于多种 CSS 属性中，如 shape-outside 或 clip-path，以创建特定的布局或剪裁效果。</p>
+<ul>
+<li><p>在 shape-outside 属性中，ellipse()函数定义了一个围绕元素内容的椭圆形路径，使得文本或其他内容可以环绕在这个椭圆形的外部流动。这对于创建独特的文本布局和视觉效果非常有用，特别是在需要文本环绕非圆形区域时。</p>
+</li>
+<li><p>在 clip-path 属性中，ellipse()函数则用于剪裁元素的内容，只显示椭圆形区域内的部分。这可以用于创建椭圆形头像、椭圆形图像裁剪等效果。</p>
+</li>
+</ul>
+<p>ellipse()函数的语法通常如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ellipse( <span class="selector-attr">[ &lt;length&gt; | &lt;percentage&gt; ]</span>&#123;<span class="number">2</span>&#125; <span class="selector-attr">[ at &lt;position&gt; ]</span>? )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>&lt;length&gt;</code>或<code>&lt;percentage&gt;</code>参数定义了椭圆的水平和垂直半径。可以提供两个值来分别指定椭圆的宽度和高度。</p>
+</li>
+<li><p>at <code>&lt;position&gt;</code>参数是可选的，用于指定椭圆形的位置。如果省略，椭圆形将居中于元素。</p>
+</li>
+</ul>
+<p>例如，以下代码创建了一个水平半径为 100px，垂直半径为 50px，位置在(50px, 50px)的椭圆形：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">shape-outside</span>: <span class="built_in">ellipse</span>(<span class="number">100px</span> <span class="number">50px</span> at <span class="number">50px</span> <span class="number">50px</span>);</span><br></pre></td></tr></table></figure>
+
+<p>或者，如果想要创建一个与元素大小成比例的椭圆形，可以使用百分比值：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">ellipse</span>(<span class="number">50%</span> <span class="number">75%</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这将创建一个宽度为元素宽度 50%，高度为元素高度 75%的椭圆形剪裁。</p>
+<h2 id="inset"><a href="#inset" class="headerlink" title="inset()"></a>inset()</h2><p>inset() 函数用于定义图形剪裁区域的函数，主要在 clip-path 属性中使用。它允许创建一个矩形或带有圆角的矩形剪裁区域，该区域定义了元素内容应该显示的部分。</p>
+<p>inset()函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inset( <span class="selector-attr">[ &lt;length&gt; | &lt;percentage&gt; ]</span>&#123;<span class="number">1</span>,<span class="number">4</span>&#125; <span class="selector-attr">[ round &lt;border-radius&gt; ]</span>? )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>[ <code>&lt;length&gt;</code> | <code>&lt;percentage&gt;</code> ]{1,4}：这个参数指定了矩形边框的偏移量。可以提供 1 到 4 个值，分别代表上、右、下、左四个方向的偏移。如果只给出一个值，则所有四个方向都将使用这个值。如果给出两个值，第一个值将用于上下偏移，第二个值将用于左右偏移。如果给出三个值，它们将分别用于上、左右、下的偏移。如果给出四个值，它们将分别用于上、右、下、左的偏移。这些值可以是长度单位（如 px、em 等）或百分比。</p>
+</li>
+<li><p>round <code>&lt;border-radius&gt;</code>：这是一个可选参数，用于指定矩形的圆角半径。可以提供一个或多个值来定义不同角的圆角大小。这些值遵循与 CSS 的 border-radius 属性相同的语法和规则。</p>
+</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 创建一个从边框向内偏移10px的矩形剪裁区域 */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">inset</span>(<span class="number">10px</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建一个从顶部边框向内偏移20px，从右侧和左侧边框向内偏移30px，从底部边框向内偏移40px的矩形剪裁区域 */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">inset</span>(<span class="number">20px</span> <span class="number">30px</span> <span class="number">40px</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建一个从顶部边框向内偏移10%，从右侧和左侧边框向内偏移20%，从底部边框向内偏移30%，并带有50px圆角的矩形剪裁区域 */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">inset</span>(<span class="number">10%</span> <span class="number">20%</span> <span class="number">30%</span> round <span class="number">50px</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建一个带有四个不同圆角的矩形剪裁区域 */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">inset</span>(<span class="number">20px</span> round <span class="number">10px</span> <span class="number">20px</span> <span class="number">30px</span> <span class="number">40px</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注意，<code>inset()</code>函数在 clip-path 属性中使用时，将创建一个内部剪裁效果，只显示矩形区域内的内容，而矩形外部的内容将被剪裁掉。</p>
+<h2 id="polygon"><a href="#polygon" class="headerlink" title="polygon()"></a>polygon()</h2><p>polygon() 函数用于定义一个由直线段组成的多边形剪裁区域。这个函数通常在 clip-path 属性中使用，以剪裁图像或文本，只显示多边形区域内的部分。</p>
+<p>polygon()函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">polygon( <span class="selector-attr">[ &lt;fill-rule&gt; || &lt;length-percentage&gt;&#123;2,n&#125; ]</span> )</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>&lt;fill-rule&gt;</code>：可选参数，用于定义当路径自相交时如何填充多边形。它可以是 nonzero（默认值）或 evenodd。</p>
+</li>
+<li><p><code>&lt;length-percentage&gt;</code>{2,n}：这个参数是必需的，它定义了多边形的每个顶点的坐标。每个顶点由两个值表示，分别是 X 和 Y 坐标。可以提供至少两个顶点来定义一个简单的多边形，每个顶点对由空格分隔。</p>
+</li>
+</ul>
+<p>以下是一些使用 polygon()函数的例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义一个三角形剪裁区域 */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">polygon</span>(<span class="number">50%</span> <span class="number">0%</span>, <span class="number">0%</span> <span class="number">100%</span>, <span class="number">100%</span> <span class="number">100%</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 定义一个四边形（矩形）剪裁区域 */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">polygon</span>(<span class="number">0%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">0%</span>, <span class="number">100%</span> <span class="number">100%</span>, <span class="number">0%</span> <span class="number">100%</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 定义一个五边形剪裁区域 */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">polygon</span>(<span class="number">0%</span> <span class="number">0%</span>, <span class="number">25%</span> <span class="number">100%</span>, <span class="number">50%</span> <span class="number">0%</span>, <span class="number">75%</span> <span class="number">100%</span>, <span class="number">100%</span> <span class="number">0%</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 使用 fill-rule */</span></span><br><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">polygon</span>(nonzero, <span class="number">50%</span> <span class="number">0%</span>, <span class="number">0%</span> <span class="number">100%</span>, <span class="number">100%</span> <span class="number">100%</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这里，每个多边形的顶点坐标都是相对于元素自身的宽度和高度的百分比。可以使用绝对长度单位（如 px, em 等）代替百分比，但这通常不常见。</p>
+<p>注意，polygon()函数定义的顶点顺序很重要，它决定了多边形的形状和方向。</p>
+<h2 id="path"><a href="#path" class="headerlink" title="path()"></a>path()</h2><p>path()函数与 clip-path 属性结合使用，用于定义图形剪裁区域。该函数允许指定一个 SVG 路径来定义剪裁的形状。通过 path()函数，可以使用 SVG 路径语法来创建复杂的剪裁区域，从而实现更精确的图像或文本剪裁效果。</p>
+<p>path()函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">clip-path</span>: <span class="built_in">path</span>(&lt;svg-path-data&gt;);</span><br></pre></td></tr></table></figure>
+
+<p>其中<code>&lt;svg-path-data&gt;</code>是一个 SVG 路径数据字符串，它描述了剪裁区域的形状。这个字符串可以使用 SVG 路径命令和参数来定义，例如 M（moveto）、L（lineto）、C（curveto）等。</p>
+<p>以下是一个使用 path()函数剪裁图像的例子：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clipped-image</span> &#123;</span><br><span class="line">  <span class="attribute">clip-path</span>: <span class="built_in">path</span>(<span class="string">&quot;M0,0 L1,0 L1,1 L0,1 Z&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里，<code>path(&#39;M0,0 L1,0 L1,1 L0,1 Z&#39;)</code>定义了一个矩形剪裁区域。这个路径从点(0,0)开始，沿直线到(1,0)，然后到(1,1)，再到(0,1)，最后关闭路径（Z 表示回到起始点）。</p>
+<h1 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h1><h2 id="scale-、scaleX-、scaleY-、scaleZ-、scale3d"><a href="#scale-、scaleX-、scaleY-、scaleZ-、scale3d" class="headerlink" title="scale()、scaleX()、scaleY()、scaleZ()、scale3d()"></a>scale()、scaleX()、scaleY()、scaleZ()、scale3d()</h2><p>scale()、scaleX()、scaleY() 和 scale3d() 是 CSS3 中的缩放函数，用于调整元素的大小。这些函数可以单独或组合使用，以实现元素在二维或三维空间中的缩放效果。</p>
+<p>scale() 函数用于同时调整元素在水平和垂直方向上的大小。它接受两个参数，第一个参数表示水平缩放比例，第二个参数表示垂直缩放比例。如果只提供一个参数，那么第二个参数默认与第一个参数相同，实现等比例缩放。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">2</span>); <span class="comment">/* 元素在水平和垂直方向上放大两倍 */</span></span><br><span class="line"><span class="attribute">transform</span>: <span class="built_in">scale</span>(</span><br><span class="line">  <span class="number">1.5</span>,</span><br><span class="line">  <span class="number">0.5</span></span><br><span class="line">); <span class="comment">/* 元素在水平方向上放大1.5倍，垂直方向上缩小到一半 */</span></span><br></pre></td></tr></table></figure>
+
+<p>scaleX() 函数仅用于调整元素在 X 轴上的大小。它接受一个参数，表示水平缩放比例。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">scaleX</span>(<span class="number">2</span>); <span class="comment">/* 元素在水平方向上放大两倍 */</span></span><br></pre></td></tr></table></figure>
+
+<p>scaleY() 函数仅用于调整元素在 Y 轴上的大小。它接受一个参数，表示垂直缩放比例。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">scaleY</span>(<span class="number">0.5</span>); <span class="comment">/* 元素在垂直方向上缩小到一半 */</span></span><br></pre></td></tr></table></figure>
+
+<p>scaleZ() 函数仅用于调整元素在 Z 轴上的大小。它接受一个参数，表示在 Z 轴缩放比例。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">scaleZ</span>(<span class="number">0.5</span>); <span class="comment">/* 元素在Z轴上缩小到一半 */</span></span><br></pre></td></tr></table></figure>
+
+<p>scale3d() 函数用于在三维空间中调整元素的大小。它接受三个参数，分别表示在 X 轴、Y 轴和 Z 轴上的缩放比例。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">scale3d</span>(</span><br><span class="line">  <span class="number">1</span>,</span><br><span class="line">  <span class="number">2</span>,</span><br><span class="line">  <span class="number">0.5</span></span><br><span class="line">); <span class="comment">/* 元素在X轴上不变，Y轴上放大两倍，Z轴上缩小到一半 */</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：当使用多个变换函数时，它们应该通过空格分隔，并按特定的顺序应用（例如，先应用 scale()，然后是 rotate() 等）。</p>
+<h2 id="rotate-、rotateX-、rotateY-、rotateZ-、rotate3d"><a href="#rotate-、rotateX-、rotateY-、rotateZ-、rotate3d" class="headerlink" title="rotate()、rotateX()、rotateY()、rotateZ()、rotate3d()"></a>rotate()、rotateX()、rotateY()、rotateZ()、rotate3d()</h2><p>rotate()、rotateX()、rotateY()、rotateZ()、rotate3d() 是 CSS3 中的旋转函数，用于调整元素在二维或三维空间中的旋转角度。这些函数可以作为 transform 属性的值来使用，以实现元素的旋转效果。</p>
+<p>rotate() 函数用于在二维空间中旋转元素。它接受一个参数，表示旋转的角度（以度或弧度为单位）。旋转是相对于元素的中心点进行的，并且按照顺时针方向进行。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotate</span>(<span class="number">45deg</span>); <span class="comment">/* 元素顺时针旋转 45 度 */</span></span><br></pre></td></tr></table></figure>
+
+<p>rotateX() 函数用于在三维空间中绕 X 轴旋转元素。它接受一个参数，表示旋转的角度。正值表示元素按照顺时针方向旋转，负值表示逆时针方向旋转。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotateX</span>(<span class="number">90deg</span>); <span class="comment">/* 元素绕 X 轴顺时针旋转 90 度 */</span></span><br></pre></td></tr></table></figure>
+
+<p>rotateY() 函数用于在三维空间中绕 Y 轴旋转元素。它的参数和用法与 rotateX() 相同，只是旋转轴是 Y 轴。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotateY</span>(-<span class="number">45deg</span>); <span class="comment">/* 元素绕 Y 轴逆时针旋转 45 度 */</span></span><br></pre></td></tr></table></figure>
+
+<p>rotateZ() 函数用于在三维空间中绕 Z 轴旋转元素。它的参数和用法与 rotateX() 和 rotateY() 相同，只是旋转轴是 Z 轴。在二维空间中，rotateZ()的效果与 rotate() 相同。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotateZ</span>(<span class="number">180deg</span>); <span class="comment">/* 元素绕 Z 轴旋转 180 度 */</span></span><br></pre></td></tr></table></figure>
+
+<p>rotate3d() 函数用于在三维空间中沿任意向量旋转元素。它接受四个参数，分别表示旋转向量的 X、Y、Z 分量以及旋转的角度。通过指定不同的向量分量，可以实现沿任意方向的旋转。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">rotate3d</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">60deg</span>); <span class="comment">/* 元素沿 X 轴方向旋转 60 度 */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="translate-、translatex-、translatey-、translateZ-、translate3d"><a href="#translate-、translatex-、translatey-、translateZ-、translate3d" class="headerlink" title="translate()、translatex()、translatey()、translateZ()、translate3d()"></a>translate()、translatex()、translatey()、translateZ()、translate3d()</h2><p><code>translate()、translatex()、translatey()、translateZ()、translate3d()</code> 是 CSS3 中的平移函数，用于在二维或三维空间中移动元素的位置。这些函数可以作为 transform 属性的值来使用，以实现元素的平移效果。</p>
+<p>translate() 函数用于在二维空间中移动元素。它接受两个参数，第一个参数表示在 X 轴上的移动距离，第二个参数表示在 Y 轴上的移动距离。如果只提供一个参数，那么第二个参数默认值为 0，表示只在 X 轴上移动。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translate</span>(</span><br><span class="line">  <span class="number">50px</span>,</span><br><span class="line">  <span class="number">100px</span></span><br><span class="line">); <span class="comment">/* 元素在 X 轴上移动 50px，在 Y 轴上移动 100px */</span></span><br></pre></td></tr></table></figure>
+
+<p>translateX() 函数仅用于在水平方向（X 轴）上移动元素。它接受一个参数，表示在 X 轴上的移动距离。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">30px</span>); <span class="comment">/* 元素在 X 轴上移动 30px */</span></span><br></pre></td></tr></table></figure>
+
+<p>translateY() 函数仅用于在垂直方向（Y 轴）上移动元素。它接受一个参数，表示在 Y 轴上的移动距离。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translateY</span>(-<span class="number">50px</span>); <span class="comment">/* 元素在 Y 轴上向上移动 50px */</span></span><br></pre></td></tr></table></figure>
+
+<p>translateZ() 函数用于在三维空间的 Z 轴上移动元素。它接受一个参数，表示在 Z 轴上的移动距离。在二维渲染中，translateZ() 通常不会产生可见的效果，但它可以影响 3D 变换和其他 3D CSS 属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translateZ</span>(</span><br><span class="line">  <span class="number">20px</span></span><br><span class="line">); <span class="comment">/* 元素在 Z 轴上移动 20px（在 2D 渲染中通常不可见） */</span></span><br></pre></td></tr></table></figure>
+
+<p>translate3d() 函数用于在三维空间中同时移动元素在 X、Y 和 Z 轴上的位置。它接受三个参数，分别表示在 X、Y、Z 轴上的移动距离。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translate3d</span>(</span><br><span class="line">  <span class="number">10px</span>,</span><br><span class="line">  <span class="number">20px</span>,</span><br><span class="line">  <span class="number">30px</span></span><br><span class="line">); <span class="comment">/* 元素在 X 轴上移动 10px，Y 轴上移动 20px，Z 轴上移动 30px */</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：在进行 3D 变换时，translateZ() 和 translate3d() 会影响元素的层叠上下文，可能会改变元素的层叠顺序。</p>
+<h2 id="skew-、skewX-、skewY"><a href="#skew-、skewX-、skewY" class="headerlink" title="skew()、skewX()、skewY()"></a>skew()、skewX()、skewY()</h2><p><code>skew()</code>、<code>skewX()</code> 和 <code>skewY()</code> 是 CSS3 中的倾斜函数，用于在二维空间中对元素进行倾斜变换。这些函数可以作为 trans&#96;&#96;form 属性的值来使用，以实现元素的倾斜效果。</p>
+<p><code>skew()</code> 函数允许在一个声明中同时指定 X 轴和 Y 轴的倾斜角度。它接受两个参数，第一个参数对应 X 轴的倾斜角度，第二个参数对应 Y 轴的倾斜角度。如果第二个参数未提供，则默认值为 0。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">skew</span>(</span><br><span class="line">  <span class="number">30deg</span>,</span><br><span class="line">  <span class="number">20deg</span></span><br><span class="line">); <span class="comment">/* 元素在 X 轴上倾斜 30 度，在 Y 轴上倾斜 20 度 */</span></span><br></pre></td></tr></table></figure>
+
+<p>skewX() 函数仅用于在水平方向（X 轴）上倾斜元素。它接受一个参数，表示元素在 X 轴上的倾斜角度。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">skewX</span>(<span class="number">45deg</span>); <span class="comment">/* 元素在 X 轴上倾斜 45 度 */</span></span><br></pre></td></tr></table></figure>
+
+<p>skewY() 函数仅用于在垂直方向（Y 轴）上倾斜元素。它接受一个参数，表示元素在 Y 轴上的倾斜角度。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">skewY</span>(-<span class="number">30deg</span>); <span class="comment">/* 元素在 Y 轴上倾斜 -30 度（即向上倾斜） */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="perspective"><a href="#perspective" class="headerlink" title="perspective()"></a>perspective()</h2><p><code>perspective()</code> 用于设置 3D 变换元素的透视效果。perspective() 函数必须与 transform 属性一起使用，以在元素上创建一种视觉上的深度感。</p>
+<p>perspective() 函数接受一个长度值作为参数，这个值表示观察者与 z&#x3D;0 平面之间的距离。这个距离定义了 3D 变换的透视效果。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.element</span> &#123;</span><br><span class="line">  <span class="attribute">transform</span>: <span class="built_in">perspective</span>(<span class="number">500px</span>) <span class="built_in">rotateX</span>(<span class="number">45deg</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，.element 将被应用一个透视效果，观察者似乎位于距离 z&#x3D;0 平面 500px 的地方，并且元素还绕 X 轴旋转了 45 度。</p>
+<p>透视效果让元素在 z 轴上的变换看起来更加自然。离观察者较近的元素会显得更大，而离观察者较远的元素则会显得更小。这模仿了我们在现实世界中观察物体时的透视效果。</p>
+<p>注意：在处理多个 3D 变换元素时，需要谨慎使用 perspective() 函数，因为每个元素上的透视效果是独立的。如果需要在一个容器内对多个元素应用透视效果，通常最佳做法是在容器元素上设置透视效果，而不是在每个子元素上分别设置。</p>
+<h2 id="matrix-、matrix3d"><a href="#matrix-、matrix3d" class="headerlink" title="matrix()、matrix3d()"></a>matrix()、matrix3d()</h2><p><code>matrix()</code> 和 <code>matrix3d()</code> 是 CSS3 中 transform 属性的两个函数值，它们允许通过矩阵来定义元素的 2D 和 3D 变换。</p>
+<p>matrix() 函数用于定义 2D 变换矩阵。它接受六个参数，这些参数表示一个 3x3 的变换矩阵（但实际上只用到了六个值，因为最后一行总是 [0, 0, 1]）。这个矩阵用于计算元素的最终位置。</p>
+<p><strong>matrix(n1, n2, n3, n4, n5, n6)</strong> 中的参数意义如下：</p>
+<ul>
+<li><p>n1 和 n4 控制缩放和倾斜（scaleX 和 scaleY）。</p>
+</li>
+<li><p>n2 和 n3 控制倾斜（skewX 和 skewY）。</p>
+</li>
+<li><p>n5 和 n6 控制平移（translateX 和 translateY）。</p>
+</li>
+</ul>
+<p>实际上，这个矩阵可以看作是以下形式的简写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">| n1 n2 <span class="number">0</span> |</span><br><span class="line">| n3 n4 <span class="number">0</span> |</span><br><span class="line">| n5 n6 <span class="number">1</span> |</span><br></pre></td></tr></table></figure>
+
+<p>matrix3d() 函数用于定义 3D 变换矩阵。它接受 16 个参数，这些参数表示一个 4x4 的变换矩阵。这个矩阵用于计算元素在三维空间中的最终位置和方向。</p>
+<p>matrix3d(n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16) 中的参数意义较为复杂，但大致可以划分为以下几类：</p>
+<p>前四个参数（n1-n4）通常与 X 轴相关。</p>
+<p>接下来的四个参数（n5-n8）通常与 Y 轴相关。</p>
+<p>再接下来的四个参数（n9-n12）通常与 Z 轴相关（包括透视效果）。</p>
+<p>最后四个参数（n13-n16）控制平移（translateX, translateY, translateZ）和透视因子。</p>
+<p>实际上，这个矩阵可以看作是以下形式的简写：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">| n1  n2  n3  n4 |</span><br><span class="line">| n5  n6  n7  n8 |</span><br><span class="line">| n9 n10 n11 n12 |</span><br><span class="line">|n13 n14 n15 n16 |</span><br></pre></td></tr></table></figure>
+
+<p>其中，最后一列（n13, n14, n15, n16）主要用于平移变换和透视效果。</p>
+<p>注意：</p>
+<ul>
+<li><p>matrix() 和 matrix3d() 允许更精细的控制元素变换，但它们也比较复杂，不容易直观地理解。</p>
+</li>
+<li><p>这两个函数通常用于高级的动画效果和复杂的布局情况。</p>
+</li>
+<li><p>当使用 matrix() 或 matrix3d() 时，需要确保你提供的参数能正确地形成一个有效的变换矩阵。</p>
+</li>
+<li><p>与其他 transform 函数值一样，matrix() 和 matrix3d() 的效果不会触发页面的重新布局，也不会影响其他元素（除了被变换的元素本身及其子元素）。</p>
+</li>
+</ul>
+<p>如果只是想进行简单的 2D 或 3D 变换，使用更高级的 translate(), rotate(), scale(), skew() 等函数可能更容易理解和实现。但是，对于复杂的变换或组合变换，matrix() 和 matrix3d() 提供了更强大的功能。</p>
+<h1 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h1><h2 id="fit-content"><a href="#fit-content" class="headerlink" title="fit-content()"></a>fit-content()</h2><p><code>fit-content()</code> 用于根据内容自动调整元素的尺寸。它接受一个参数，该参数可以是一个长度值（如 px、%、em 等）或百分比值，用于定义元素的最小或最大尺寸。当元素的内容超过指定尺寸时，fit-content() 函数可以确保元素的大小适应内容，但不会超过其最大限制。</p>
+<p>在 CSS Grid 布局中，fit-content() 函数特别有用，因为它允许网格项根据内容动态调整大小。例如，可以使用 fit-content() 函数来设置网格项的宽度，以便它们根据内容自动伸缩，同时保持一定的最小或最大宽度。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fit, <span class="built_in">minmax</span>(<span class="number">200px</span>, <span class="built_in">fit-content</span>(<span class="number">100%</span>)));</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.grid-item</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f2f2f2</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，创建了一个名为 .grid-container 的网格容器，并使用 grid-template-columns 属性定义了网格列的宽度。通过使用 repeat(auto-fit, minmax(200px, fit-content(100%)))，告诉浏览器根据可用空间自动适应网格项的数量，并确保每个网格项的最小宽度为 200px，最大宽度为其内容的宽度（但不超过父容器的宽度）。这样，当内容较长时，网格项会自动扩展宽度以适应内容；而当内容较短时，网格项会收缩至最小宽度。</p>
+<h2 id="minmax"><a href="#minmax" class="headerlink" title="minmax()"></a>minmax()</h2><p>minmax()是 CSS Grid 布局中的一个函数，它用于定义一个长度范围，表示网格容器中的网格项可以使用的最小和最大尺寸。minmax() 函数接受两个参数：最小值和最大值。</p>
+<p>在 grid-template-columns 或 grid-template-rows 属性中，可以使用 minmax() 来为网格项设置列或行的最小和最大尺寸。这允许网格项在需要时扩展或收缩，但不会超过指定的最大或最小尺寸。</p>
+<p>minmax() 函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minmax(min-length, max-length)</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><p>min-length 是网格项可以使用的最小尺寸。</p>
+</li>
+<li><p>max-length 是网格项可以使用的最大尺寸。</p>
+</li>
+</ul>
+<p>这两个参数都可以是任何有效的 CSS 长度单位，如 px、em、% 等。如果省略 max-length，则默认值为 auto，表示网格项可以扩展到占据所有可用空间。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fill, <span class="built_in">minmax</span>(<span class="number">100px</span>, <span class="number">1</span>fr));</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.grid-item</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f2f2f2</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，.grid-container 是一个网格容器，使用 grid-template-columns 属性来定义网格的列。repeat(auto-fill, minmax(100px, 1fr)) 表示浏览器应该尝试填充尽可能多的列，每列的最小宽度为 100px，最大宽度为 1fr（即网格容器可用空间的一个等份）。如果容器宽度允许，所有列都将尝试扩展到相同的宽度（即 1fr），但如果容器宽度有限，列宽将不会小于 100px。</p>
+<p>使用 minmax()函数可以创建更加灵活和响应式的网格布局，其中网格项可以根据可用空间自动调整大小，同时保持一定的尺寸限制。</p>
+<h2 id="repeat"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</h2><p>repeat() 是 CSS Grid 布局和 Flexbox 布局中的一个函数，用于重复一个或多个值指定的次数。在 Grid 布局中，它通常与 grid-template-columns 和 grid-template-rows 属性一起使用，以定义重复的网格轨道。在 Flexbox 布局中，它可以与 flex 属性一起使用，以定义重复的 flex 项。</p>
+<p>在 Grid 布局中，repeat() 函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">repeat(count, value)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>count 是一个正整数，表示要重复的值的次数。</li>
+</ul>
+<p>value 是要重复的值，可以是一个长度、百分比、fr 单位等。</p>
+<ul>
+<li>repeat() 函数会根据指定的次数重复给定的值，从而简化代码并创建更加灵活的网格布局。</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(<span class="number">3</span>, <span class="number">100px</span>);</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，.grid-container 是一个网格容器，使用 grid-template-columns 属性定义了网格的列。repeat(3, 100px) 表示我们要创建三列，每列的宽度都是 100px。因此，总宽度将是 3 * 100px &#x3D; 300px。</p>
+<p>此外，repeat() 函数还可以与 auto-fill 和 auto-fit 关键字一起使用，以根据可用空间自动调整列或行的数量。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.grid-container</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: grid;</span><br><span class="line">  <span class="attribute">grid-template-columns</span>: <span class="built_in">repeat</span>(auto-fill, <span class="built_in">minmax</span>(<span class="number">100px</span>, <span class="number">1</span>fr));</span><br><span class="line">  <span class="attribute">grid-gap</span>: <span class="number">10px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，repeat(auto-fill, minmax(100px, 1fr)) 表示浏览器应该尝试填充尽可能多的列，每列的最小宽度为 100px，最大宽度为 1fr。auto-fill 关键字告诉浏览器根据容器宽度自动计算需要多少列。</p>
+<p>通过使用 repeat() 函数，可以更加轻松地创建复杂且灵活的网格布局，而无需手动指定每个网格轨道的尺寸。</p>
+<h1 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h1><h2 id="cubic-bezier"><a href="#cubic-bezier" class="headerlink" title="cubic-bezier()"></a>cubic-bezier()</h2><p><code>cubic-bezier()</code> 用于定义自定义的缓动曲线，让动画或过渡效果可以具有非线性的速度变化。这个函数基于贝塞尔曲线来工作，允许通过指定四个点（两个端点和两个控制点）来定义动画的速度曲线。</p>
+<p>cubic-bezier() 函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cubic-bezier(n,n,n,n)</span><br></pre></td></tr></table></figure>
+
+<p>这里的 n 是 0 到 1 之间的数值，它们分别代表两个控制点的 x 和 y 坐标。端点始终是 (0,0) 和 (1,1)，所以不需要指定。</p>
+<p>使用 cubic-bezier() 函数时，需要提供这四个数值作为参数，它们定义了贝塞尔曲线的形状。这些数值会影响动画的速度和加速度，从而创造出各种各样的动画效果。</p>
+<p>下面是一些常用的预定义 cubic-bezier() 值，以及它们所代表的效果：</p>
+<ul>
+<li><p>cubic-bezier(0.25, 0.1, 0.25, 1.0)：慢到快然后慢的缓动（与 ease-in-out 类似）。</p>
+</li>
+<li><p>cubic-bezier(0.42, 0, 1, 1)：先慢后快的缓动（与 ease-out 类似）。</p>
+</li>
+<li><p>cubic-bezier(0, 0, 0.58, 1)：先快后慢的缓动（与 ease-in 类似）。</p>
+</li>
+<li><p>cubic-bezier(0, 0, 0, 1)：线性缓动（与 linear 类似）。</p>
+</li>
+</ul>
+<p>要在 CSS 中使用 cubic-bezier() 函数，可以将它应用于 transition-timing-function 或 animation-timing-function 属性。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 使用自定义的 cubic-bezier 缓动函数 */</span></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">transition</span>: width <span class="number">2s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.25</span>, <span class="number">0.1</span>, <span class="number">0.25</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 或者在关键帧动画中使用 */</span></span><br><span class="line"><span class="keyword">@keyframes</span> example &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: blue;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">animation</span>: example <span class="number">3s</span> <span class="built_in">cubic-bezier</span>(<span class="number">0.42</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，div 元素的宽度过渡和背景颜色动画都将使用自定义的 cubic-bezier() 缓动函数。可以通过调整四个数值来创建出适合动画需求的缓动曲线。</p>
+<h2 id="steps"><a href="#steps" class="headerlink" title="steps()"></a>steps()</h2><p>steps() 用于在动画或过渡中创建一种阶跃式（步进式）的变化效果，而不是平滑的过渡。当使用 steps() 函数时，属性会在指定的段数内突然改变，而不是在两个状态之间平滑地过渡。</p>
+<p>steps() 函数的语法如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">steps(number, <span class="selector-attr">[start | end]</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>number 是一个正整数，表示动画或过渡应该被分割成多少个阶跃。</p>
+</li>
+<li><p>start 或 end 是一个可选参数，用于指定阶跃变化发生的时刻。如果省略或设置为 end，则每个阶跃会在每个间隔的结束时刻发生。如果设置为 start，则每个阶跃会在每个间隔的开始时刻发生。</p>
+</li>
+</ul>
+<p>例如，如果希望一个元素在 2 秒内从其原始位置跳到 100px 的位置，并且希望这个跳跃发生在 1 秒和 2 秒的时刻，可以使用 steps(2, end)。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">  <span class="attribute">animation</span>: jump <span class="number">2s</span> <span class="built_in">steps</span>(<span class="number">2</span>, end) infinite;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@keyframes</span> jump &#123;</span><br><span class="line">  <span class="number">0%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="number">100%</span> &#123;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">100px</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>div</code> 元素会无限次地在 2 秒内从其原始位置跳跃到 100px 的位置。由于使用了 <code>steps(2, end)</code>，跳跃会在动画的第 1 秒和第 2 秒结束时发生。</p>
+<p><code>steps()</code> 函数通常用于创建一种机械或数字化的动画效果，因为它允许属性在特定的时间点突然改变，而不是平滑地过渡。这种效果在模拟数字时钟、步进式进度条或某些类型的用户界面动画时特别有用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://whyta.cn">YangTao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://whyta.cn/post/416f91850271/">https://whyta.cn/post/416f91850271/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://whyta.cn" target="_blank">前端日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CSS/">CSS</a></div><div class="post_share"><div class="social-share" data-image="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/a4dd5826810e/" title="CSS @符号规则的使用（@font-face、@keyframes、@media、@scope等）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CSS @符号规则的使用（@font-face、@keyframes、@media、@scope等）</div></div></a></div><div class="next-post pull-right"><a href="/post/1d5db749b4b4/" title="JS生成UUID的四种方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">JS生成UUID的四种方法</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/6ce935d403d7/" title="9个你不知道的 CSS 伪元素"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-27</div><div class="title">9个你不知道的 CSS 伪元素</div></div></a></div><div><a href="/post/d358c5c77f42/" title="CSS教程和技巧收藏"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-11</div><div class="title">CSS教程和技巧收藏</div></div></a></div><div><a href="/post/1fcbce14f5b5/" title="使用CSS实现进度条和饼图"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-01</div><div class="title">使用CSS实现进度条和饼图</div></div></a></div><div><a href="/post/32cab3baf9f3/" title="面试官：谈谈你对BFC的理解？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：谈谈你对BFC的理解？</div></div></a></div><div><a href="/post/fa2d202671d1/" title="面试官：css3动画有哪些？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：css3动画有哪些？</div></div></a></div><div><a href="/post/4c3c912f15d4/" title="面试官：说说你对盒子模型的理解?"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-01</div><div class="title">面试官：说说你对盒子模型的理解?</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">Gitalk</span><span id="switch-btn"></span><span class="second-comment">Valine</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://xiaojinhe-cdn.iyoudui.cn/upload/common/2023/avata.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">YangTao</div><div class="author-info__description">share & study</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">293</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">10</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/ytanck"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/ytanck" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:yt_anck@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">=>一个优秀的CV大师的个人网站，主要内容是Web前端技术。如果喜欢，欢迎Star!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#attr"><span class="toc-number">1.1.</span> <span class="toc-text">attr()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#counter-%E3%80%81counters"><span class="toc-number">1.2.</span> <span class="toc-text">counter()、counters()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#url"><span class="toc-number">1.3.</span> <span class="toc-text">url()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#var"><span class="toc-number">1.4.</span> <span class="toc-text">var()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#element"><span class="toc-number">1.5.</span> <span class="toc-text">element()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#image-set"><span class="toc-number">1.6.</span> <span class="toc-text">image-set()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2"><span class="toc-number">2.</span> <span class="toc-text">颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rgb-%E3%80%81rgba"><span class="toc-number">2.1.</span> <span class="toc-text">rgb()、rgba()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hsl-%E3%80%81hsla"><span class="toc-number">2.2.</span> <span class="toc-text">hsl()、hsla()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hwb"><span class="toc-number">2.3.</span> <span class="toc-text">hwb()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lab"><span class="toc-number">2.4.</span> <span class="toc-text">lab()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lch"><span class="toc-number">2.5.</span> <span class="toc-text">lch()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#device-cmyk"><span class="toc-number">2.6.</span> <span class="toc-text">device-cmyk()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#color-mix"><span class="toc-number">2.7.</span> <span class="toc-text">color-mix()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#oklab-%E5%87%BD%E6%95%B0%E7%9A%84%E8%AF%AD%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">2.8.</span> <span class="toc-text">oklab() 函数的语法如下：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BB%A4%E9%95%9C"><span class="toc-number">3.</span> <span class="toc-text">滤镜</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#blur"><span class="toc-number">3.1.</span> <span class="toc-text">blur()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#brightness"><span class="toc-number">3.2.</span> <span class="toc-text">brightness()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#contrast"><span class="toc-number">3.3.</span> <span class="toc-text">contrast()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#saturate"><span class="toc-number">3.4.</span> <span class="toc-text">saturate()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sepia"><span class="toc-number">3.5.</span> <span class="toc-text">sepia()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#invert"><span class="toc-number">3.6.</span> <span class="toc-text">invert()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#grayscale"><span class="toc-number">3.7.</span> <span class="toc-text">grayscale()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drop-shadow"><span class="toc-number">3.8.</span> <span class="toc-text">drop-shadow()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hue-rotate"><span class="toc-number">3.9.</span> <span class="toc-text">hue-rotate()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B8%90%E5%8F%98"><span class="toc-number">4.</span> <span class="toc-text">渐变</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#linear-gradient-%E3%80%81repeating-linear-gradient"><span class="toc-number">4.1.</span> <span class="toc-text">linear-gradient()、repeating-linear-gradient()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#radial-gradient-%E3%80%81repeating-radial-gradient"><span class="toc-number">4.2.</span> <span class="toc-text">radial-gradient()、repeating-radial-gradient()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conic-gradient-%E3%80%81repeating-conical-gradient"><span class="toc-number">4.3.</span> <span class="toc-text">conic-gradient()、repeating-conical-gradient()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6"><span class="toc-number">5.</span> <span class="toc-text">数学</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#calc"><span class="toc-number">5.1.</span> <span class="toc-text">calc()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#min-%E3%80%81max"><span class="toc-number">5.2.</span> <span class="toc-text">min()、max()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#clamp"><span class="toc-number">5.3.</span> <span class="toc-text">clamp()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2"><span class="toc-number">6.</span> <span class="toc-text">图形</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#circle"><span class="toc-number">6.1.</span> <span class="toc-text">circle()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ellipse"><span class="toc-number">6.2.</span> <span class="toc-text">ellipse()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#inset"><span class="toc-number">6.3.</span> <span class="toc-text">inset()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#polygon"><span class="toc-number">6.4.</span> <span class="toc-text">polygon()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#path"><span class="toc-number">6.5.</span> <span class="toc-text">path()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%98%E6%8D%A2"><span class="toc-number">7.</span> <span class="toc-text">变换</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#scale-%E3%80%81scaleX-%E3%80%81scaleY-%E3%80%81scaleZ-%E3%80%81scale3d"><span class="toc-number">7.1.</span> <span class="toc-text">scale()、scaleX()、scaleY()、scaleZ()、scale3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rotate-%E3%80%81rotateX-%E3%80%81rotateY-%E3%80%81rotateZ-%E3%80%81rotate3d"><span class="toc-number">7.2.</span> <span class="toc-text">rotate()、rotateX()、rotateY()、rotateZ()、rotate3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#translate-%E3%80%81translatex-%E3%80%81translatey-%E3%80%81translateZ-%E3%80%81translate3d"><span class="toc-number">7.3.</span> <span class="toc-text">translate()、translatex()、translatey()、translateZ()、translate3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#skew-%E3%80%81skewX-%E3%80%81skewY"><span class="toc-number">7.4.</span> <span class="toc-text">skew()、skewX()、skewY()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#perspective"><span class="toc-number">7.5.</span> <span class="toc-text">perspective()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#matrix-%E3%80%81matrix3d"><span class="toc-number">7.6.</span> <span class="toc-text">matrix()、matrix3d()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%83%E5%B1%80"><span class="toc-number">8.</span> <span class="toc-text">布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#fit-content"><span class="toc-number">8.1.</span> <span class="toc-text">fit-content()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#minmax"><span class="toc-number">8.2.</span> <span class="toc-text">minmax()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repeat"><span class="toc-number">8.3.</span> <span class="toc-text">repeat()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB"><span class="toc-number">9.</span> <span class="toc-text">动画</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cubic-bezier"><span class="toc-number">9.1.</span> <span class="toc-text">cubic-bezier()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#steps"><span class="toc-number">9.2.</span> <span class="toc-text">steps()</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/6f4c4d5a8d94/" title="我的GitHub首页">我的GitHub首页</a><time datetime="2024-02-21T08:01:09.352Z" title="发表于 2024-02-21 08:01:09">2024-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/a4dd5826810e/" title="CSS @符号规则的使用（@font-face、@keyframes、@media、@scope等）">CSS @符号规则的使用（@font-face、@keyframes、@media、@scope等）</a><time datetime="2024-02-20T11:23:26.000Z" title="发表于 2024-02-20 11:23:26">2024-02-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/416f91850271/" title="CSS 函数详解url、min、rgb、blur、scale、rotate、translate等">CSS 函数详解url、min、rgb、blur、scale、rotate、translate等</a><time datetime="2024-02-20T11:22:16.000Z" title="发表于 2024-02-20 11:22:16">2024-02-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/1d5db749b4b4/" title="JS生成UUID的四种方法">JS生成UUID的四种方法</a><time datetime="2023-12-07T10:13:57.000Z" title="发表于 2023-12-07 10:13:57">2023-12-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/356e62f9f174/" title="js实现数字滚动增长动画多种方案">js实现数字滚动增长动画多种方案</a><time datetime="2023-12-07T10:08:36.000Z" title="发表于 2023-12-07 10:08:36">2023-12-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By YangTao</div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/"><span>鄂ICP备2021000562号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const initGitalk = () => {
+    const gitalk = new Gitalk(Object.assign({
+      clientID: '82c5496065cfe6d3d6d6',
+      clientSecret: '798e420c011e4d4eb32f94b0e6261830a24c3c96',
+      repo: 'ytanck.github.io',
+      owner: 'ytanck',
+      admin: ['ytanck'],
+      id: 'd7616b5a86882a1d6d53503744cced93',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  const loadGitalk = async() => {
+    if (typeof Gitalk === 'function') initGitalk()
+    else {
+      await getCSS('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css')
+      await getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js')
+      initGitalk()
+    }
+  }
+  
+  const commentCount = n => {
+    const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+    if (isCommentCount) {
+      isCommentCount.textContent= n
+    }
+  }
+
+  if ('Gitalk' === 'Gitalk' || !false) {
+    if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+    else loadGitalk()
+  } else {
+    window.loadOtherComment = loadGitalk
+  }
+})()</script><script>(() => {
+  const initValine = () => {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'epBB1Z21rnGhwEtsu57MeE1d-gzGzoHsz',
+      appKey: 'jzsxVdOEZgUj76hevYcbr4pV',
+      avatar: '',
+      serverURLs: 'https://epbb1z21.lc-cn-n1-shared.com',
+      emojiMaps: "",
+      path: window.location.pathname,
+      visitor: false
+    }, null))
+  }
+
+  const loadValine = async () => {
+    if (typeof Valine === 'function') initValine()
+    else {
+      await getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine()
+    }
+  }
+
+  if ('Gitalk' === 'Valine' || !false) {
+    if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script>(() => {
+  const isChatBtn = true
+  const isChatHideShow = false
+
+  if (isChatBtn) {
+    const close = () => {
+      Chatra('minimizeWidget')
+      Chatra('hide')
+    }
+
+    const open = () => {
+      Chatra('openChat', true)
+      Chatra('show')
+    }
+
+    window.ChatraSetup = {
+      startHidden: true
+    }
+  
+    window.chatBtnFn = () => {
+      const isShow = document.getElementById('chatra').classList.contains('chatra--expanded')
+      isShow ? close() : open()
+    }
+  } else if (isChatHideShow) {
+    window.chatBtn = {
+      hide: () => {
+        Chatra('hide')
+      },
+      show: () => {
+        Chatra('show')
+      }
+    }
+  }
+
+  (function(d, w, c) {
+    w.ChatraID = 'PhLXQufxgCL6iLDEc'
+    var s = d.createElement('script')
+    w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments)
+    }
+    s.async = true
+    s.src = 'https://call.chatra.io/chatra.js'
+    if (d.head) d.head.appendChild(s)
+  })(document, window, 'Chatra')
+
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
