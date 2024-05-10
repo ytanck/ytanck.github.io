@@ -12,5 +12,5 @@ function dingtalk(content) {
     },
   })
 }
-dingtalk('报工提醒：又到周五了，记得发日报哦!')
+dingtalk('Hello Friday!')
 
